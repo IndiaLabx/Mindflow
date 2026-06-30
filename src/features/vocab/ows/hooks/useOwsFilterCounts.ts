@@ -69,12 +69,12 @@ export function useOwsQuestionIndex(metadata: OwsMetadata[]) {
 export function useOwsFilterCounts({
   metadata,
   selectedFilters,
-  selectedAlphabet,
+  selectedAlphabets,
   index
 }: {
   metadata: OwsMetadata[];
   selectedFilters: InitialFilters;
-  selectedAlphabet: string | null;
+  selectedAlphabets: string[];
   index: Record<string, Record<string, Set<string>>>;
 }) {
   return useMemo(() => {
@@ -87,7 +87,7 @@ export function useOwsFilterCounts({
             if (otherKey === keyToCount) continue;
 
             const selected = otherKey === 'alphabet'
-                ? (selectedAlphabet ? [selectedAlphabet] : [])
+                ? selectedAlphabets
                 : (selectedFilters[otherKey as keyof InitialFilters] as string[]);
 
             if (!selected || selected.length === 0) continue;
@@ -139,7 +139,7 @@ export function useOwsFilterCounts({
     let finalValidIds: Set<string> | null = null;
     for (const otherKey of filterKeys) {
         const selected = otherKey === 'alphabet'
-            ? (selectedAlphabet ? [selectedAlphabet] : [])
+            ? selectedAlphabets
             : (selectedFilters[otherKey as keyof InitialFilters] as string[]);
 
         if (!selected || selected.length === 0) continue;
@@ -170,5 +170,5 @@ export function useOwsFilterCounts({
     const finalMatchingIds = finalValidIds === null ? metadata.map(m => m.id) : Array.from(finalValidIds);
 
     return { counts: allCounts, totalMatchingCount, finalMatchingIds };
-  }, [metadata, selectedFilters, selectedAlphabet, index]);
+  }, [metadata, selectedFilters, selectedAlphabets, index]);
 }

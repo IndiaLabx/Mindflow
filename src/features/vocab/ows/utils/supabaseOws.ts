@@ -145,7 +145,7 @@ export async function fetchOwsMetadata() {
 
 export async function getFilteredOws(
   filters: InitialFilters,
-  selectedLetter: string | null,
+  selectedAlphabets: string[],
   sessionMode?: 'basic' | 'review',
   finalMatchingIds?: string[]
 ): Promise<OneWord[]> {
@@ -173,9 +173,10 @@ export async function getFilteredOws(
         if (filters.theme && filters.theme.length > 0) {
           query = query.in("theme", filters.theme);
         }
-        if (selectedLetter) {
-          query = query.ilike("word", `${selectedLetter}%`);
-        }
+        if (selectedAlphabets && selectedAlphabets.length > 0) {
+      const orCondition = selectedAlphabets.map(letter => `word.ilike.${letter}%`).join(",");
+      query = query.or(orCondition);
+    }
 
         if (filters.hasPhoto && filters.hasPhoto.length === 1) {
           if (filters.hasPhoto[0] === 'With Photo') {

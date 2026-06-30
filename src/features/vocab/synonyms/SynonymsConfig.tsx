@@ -46,7 +46,7 @@ export const SynonymsConfig: React.FC<SynonymsConfigProps> = ({ onStart, onBack 
     const [deckName, setDeckName] = useState('');
     const [isSaving, setIsSaving] = useState(false);
     const [filters, setFilters] = useState<InitialFilters>(emptyFilters);
-    const [selectedLetter, setSelectedLetter] = useState<string | null>(null);
+    const [selectedAlphabets, setSelectedAlphabets] = useState<string[]>([]);
     const [sessionMode, setSessionMode] = useState<'basic' | 'review'>('basic');
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
@@ -94,7 +94,7 @@ export const SynonymsConfig: React.FC<SynonymsConfigProps> = ({ onStart, onBack 
     const { counts: filterCounts, totalMatchingCount, finalMatchingIds } = useSynonymFilterCounts({
         metadata,
         selectedFilters: sessionMode === 'basic' ? { ...filters, reviewModeStatus: [] } : filters,
-        selectedAlphabet: selectedLetter,
+        selectedAlphabets: selectedAlphabets,
         index
     });
 
@@ -133,7 +133,7 @@ export const SynonymsConfig: React.FC<SynonymsConfigProps> = ({ onStart, onBack 
 
             const timer = setTimeout(async () => {
                 try {
-                    const data = await getFilteredSynonyms(filters, selectedLetter, sessionMode, finalMatchingIds);
+                    const data = await getFilteredSynonyms(filters, selectedAlphabets, sessionMode, finalMatchingIds);
                     prefetchedDataRef.current = { idsHash: currentHash, data };
                 } catch (e) {
                     console.error("Silent prefetch failed", e);
@@ -144,7 +144,7 @@ export const SynonymsConfig: React.FC<SynonymsConfigProps> = ({ onStart, onBack 
         } else {
              prefetchedDataRef.current = null;
         }
-    }, [finalMatchingIds, filters, selectedLetter, sessionMode]);
+    }, [finalMatchingIds, filters, selectedAlphabets, sessionMode]);
 
     const handleSaveDeck = async () => {
         setIsSaving(true);
@@ -157,7 +157,7 @@ export const SynonymsConfig: React.FC<SynonymsConfigProps> = ({ onStart, onBack 
                  alert("Please enter a name for your deck.");
                  return;
             }
-            const data = await getFilteredSynonyms(filters, selectedLetter, sessionMode);
+            const data = await getFilteredSynonyms(filters, selectedAlphabets, sessionMode);
             if (data.length > 0) {
                  await deckService.createDeck('synonym', {
                      id: crypto.randomUUID(),
@@ -201,7 +201,7 @@ export const SynonymsConfig: React.FC<SynonymsConfigProps> = ({ onStart, onBack 
             if (prefetchedDataRef.current?.idsHash === currentHash) {
                 data = prefetchedDataRef.current.data;
             } else {
-                data = await getFilteredSynonyms(filters, selectedLetter, sessionMode, finalMatchingIds);
+                data = await getFilteredSynonyms(filters, selectedAlphabets, sessionMode, finalMatchingIds);
             }
 
             if (data.length > 0) {
@@ -292,10 +292,10 @@ export const SynonymsConfig: React.FC<SynonymsConfigProps> = ({ onStart, onBack 
                         </div>
                         <div className="flex flex-wrap gap-1.5">
                             <button
-                                onClick={() => setSelectedLetter(null)}
+                                onClick={() => setSelectedAlphabets([])}
                                 className={cn(
                                     "px-3 py-2 rounded-lg text-xs font-bold transition-all border shadow-sm",
-                                    !selectedLetter
+                                    selectedAlphabets.length === 0
                                         ? "bg-teal-500 text-white border-teal-500 ring-2 ring-teal-200"
                                         : "bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:border-teal-300 hover:text-teal-600"
                                 )}
@@ -303,14 +303,14 @@ export const SynonymsConfig: React.FC<SynonymsConfigProps> = ({ onStart, onBack 
                                 ALL
                             </button>
                             {alphabet.map(letter => {
-                                const isSelected = selectedLetter === letter;
+                                const isSelected = selectedAlphabets.includes(letter);
                                 const count = filterCounts.alphabet?.[letter] || 0;
                                 const isDisabled = count === 0 && !isSelected;
                                 return (
                                     <button
                                         key={letter}
                                         disabled={isDisabled}
-                                        onClick={() => setSelectedLetter(isSelected ? null : letter)}
+                                        onClick={() => setSelectedAlphabets(prev => isSelected ? prev.filter(l => l !== letter) : [...prev, letter])}
                                         className={cn(
                                             "w-9 h-9 flex flex-col items-center justify-center rounded-lg transition-all border",
                                             isSelected

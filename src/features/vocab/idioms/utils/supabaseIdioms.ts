@@ -152,7 +152,7 @@ export async function fetchIdiomMetadata() {
 }
 
 
-export async function getFilteredIdioms(filters: InitialFilters, selectedLetter: string | null, sessionMode?: 'basic' | 'review', finalMatchingIds?: string[]): Promise<Idiom[]> {
+export async function getFilteredIdioms(filters: InitialFilters, selectedAlphabets: string[], sessionMode?: 'basic' | 'review', finalMatchingIds?: string[]): Promise<Idiom[]> {
     let query = supabase.from('idiom').select('*');
 
     // Hybrid Fetching: If we have a precise, manageable list of IDs, skip complex filters
@@ -169,8 +169,9 @@ export async function getFilteredIdioms(filters: InitialFilters, selectedLetter:
         if (filters.difficulty.length > 0) {
             query = query.in('difficulty', filters.difficulty);
         }
-        if (selectedLetter) {
-            query = query.ilike('phrase', `${selectedLetter}%`);
+        if (selectedAlphabets && selectedAlphabets.length > 0) {
+            const orCondition = selectedAlphabets.map(letter => `phrase.ilike.${letter}%`).join(",");
+            query = query.or(orCondition);
         }
         if (filters.hasPhoto && filters.hasPhoto.length === 1) {
             if (filters.hasPhoto[0] === 'With Photo') {
