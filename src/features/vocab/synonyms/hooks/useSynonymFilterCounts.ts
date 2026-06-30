@@ -67,12 +67,12 @@ export function useSynonymQuestionIndex(metadata: SynonymMetadata[]) {
 export function useSynonymFilterCounts({
   metadata,
   selectedFilters,
-  selectedAlphabet,
+  selectedAlphabets,
   index
 }: {
   metadata: SynonymMetadata[];
   selectedFilters: InitialFilters;
-  selectedAlphabet: string | null;
+  selectedAlphabets: string[];
   index: Record<string, Record<string, Set<string>>>;
 }) {
   return useMemo(() => {
@@ -85,7 +85,7 @@ export function useSynonymFilterCounts({
             if (otherKey === keyToCount) continue;
 
             const selected = otherKey === 'alphabet'
-                ? (selectedAlphabet ? [selectedAlphabet] : [])
+                ? selectedAlphabets
                 : (selectedFilters[otherKey as keyof InitialFilters] as string[]);
 
             if (!selected || selected.length === 0) continue;
@@ -137,7 +137,7 @@ export function useSynonymFilterCounts({
     let finalValidIds: Set<string> | null = null;
     for (const otherKey of filterKeys) {
         const selected = otherKey === 'alphabet'
-            ? (selectedAlphabet ? [selectedAlphabet] : [])
+            ? selectedAlphabets
             : (selectedFilters[otherKey as keyof InitialFilters] as string[]);
 
         if (!selected || selected.length === 0) continue;
@@ -168,5 +168,5 @@ export function useSynonymFilterCounts({
     const finalMatchingIds = finalValidIds === null ? metadata.map(m => m.id) : Array.from(finalValidIds);
 
     return { counts: allCounts, totalMatchingCount, finalMatchingIds };
-  }, [metadata, selectedFilters, selectedAlphabet, index]);
+  }, [metadata, selectedFilters, selectedAlphabets, index]);
 }

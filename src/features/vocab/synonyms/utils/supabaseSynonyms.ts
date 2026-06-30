@@ -77,7 +77,7 @@ export async function fetchSynonymMetadata() {
 
 export async function getFilteredSynonyms(
   filters: InitialFilters,
-  selectedLetter: string | null,
+  selectedAlphabets: string[],
   sessionMode?: 'basic' | 'review',
   finalMatchingIds?: string[]
 ): Promise<SynonymWord[]> {
@@ -102,9 +102,10 @@ export async function getFilteredSynonyms(
       if (filters.difficulty && filters.difficulty.length > 0) {
         query = query.in("difficulty", filters.difficulty);
       }
-      if (selectedLetter) {
-        query = query.ilike("word", `${selectedLetter}%`);
-      }
+      if (selectedAlphabets && selectedAlphabets.length > 0) {
+      const orCondition = selectedAlphabets.map(letter => `word.ilike.${letter}%`).join(",");
+      query = query.or(orCondition);
+    }
     }
 
     const { data, error } = await query
