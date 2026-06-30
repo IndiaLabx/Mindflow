@@ -1,0 +1,2838 @@
+{
+  "name": "app",
+  "type": "directory",
+  "children": [
+    {
+      "name": ".github",
+      "type": "directory",
+      "children": [
+        {
+          "name": "workflows",
+          "type": "directory",
+          "children": [
+            {
+              "name": "Debug_Android_apk_build.txt",
+              "type": "file"
+            },
+            {
+              "name": "android-build.yml",
+              "type": "file"
+            },
+            {
+              "name": "deploy.yml",
+              "type": "file"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": ".gitignore",
+      "type": "file"
+    },
+    {
+      "name": ".idx",
+      "type": "directory",
+      "children": [
+        {
+          "name": "dev.nix",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": "AI SECTION",
+      "type": "directory",
+      "children": [
+        {
+          "name": "CHECK.TXT",
+          "type": "file"
+        },
+        {
+          "name": "SamvadChat.tsx.txt",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": "README.md",
+      "type": "file"
+    },
+    {
+      "name": "android",
+      "type": "directory",
+      "children": [
+        {
+          "name": ".gitignore",
+          "type": "file"
+        },
+        {
+          "name": "app",
+          "type": "directory",
+          "children": [
+            {
+              "name": ".gitignore",
+              "type": "file"
+            },
+            {
+              "name": "build.gradle",
+              "type": "file"
+            },
+            {
+              "name": "capacitor.build.gradle",
+              "type": "file"
+            },
+            {
+              "name": "proguard-rules.pro",
+              "type": "file"
+            },
+            {
+              "name": "src",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "androidTest",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "java",
+                      "type": "directory",
+                      "children": [
+                        {
+                          "name": "com",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "getcapacitor",
+                              "type": "directory",
+                              "children": [
+                                {
+                                  "name": "myapp",
+                                  "type": "directory",
+                                  "children": [
+                                    {
+                                      "name": "ExampleInstrumentedTest.java",
+                                      "type": "file"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "main",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "AndroidManifest.xml",
+                      "type": "file"
+                    },
+                    {
+                      "name": "java",
+                      "type": "directory",
+                      "children": [
+                        {
+                          "name": "com",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "aklabxmindflow",
+                              "type": "directory",
+                              "children": [
+                                {
+                                  "name": "app",
+                                  "type": "directory",
+                                  "children": [
+                                    {
+                                      "name": "MainActivity.java",
+                                      "type": "file"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "res",
+                      "type": "directory",
+                      "children": [
+                        {
+                          "name": "drawable",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "ic_launcher_background.xml",
+                              "type": "file"
+                            },
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-land-hdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-land-ldpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-land-mdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-land-night-hdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-land-night-ldpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-land-night-mdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-land-night-xhdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-land-night-xxhdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-land-night-xxxhdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-land-xhdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-land-xxhdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-land-xxxhdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-night",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-port-hdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-port-ldpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-port-mdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-port-night-hdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-port-night-ldpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-port-night-mdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-port-night-xhdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-port-night-xxhdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-port-night-xxxhdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-port-xhdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-port-xxhdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-port-xxxhdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "splash.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "drawable-v24",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "ic_launcher_foreground.xml",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "layout",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "activity_main.xml",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "mipmap-anydpi-v26",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "ic_launcher.xml",
+                              "type": "file"
+                            },
+                            {
+                              "name": "ic_launcher_round.xml",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "mipmap-hdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "ic_launcher.png",
+                              "type": "file"
+                            },
+                            {
+                              "name": "ic_launcher_background.png",
+                              "type": "file"
+                            },
+                            {
+                              "name": "ic_launcher_foreground.png",
+                              "type": "file"
+                            },
+                            {
+                              "name": "ic_launcher_round.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "mipmap-ldpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "ic_launcher.png",
+                              "type": "file"
+                            },
+                            {
+                              "name": "ic_launcher_background.png",
+                              "type": "file"
+                            },
+                            {
+                              "name": "ic_launcher_foreground.png",
+                              "type": "file"
+                            },
+                            {
+                              "name": "ic_launcher_round.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "mipmap-mdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "ic_launcher.png",
+                              "type": "file"
+                            },
+                            {
+                              "name": "ic_launcher_background.png",
+                              "type": "file"
+                            },
+                            {
+                              "name": "ic_launcher_foreground.png",
+                              "type": "file"
+                            },
+                            {
+                              "name": "ic_launcher_round.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "mipmap-xhdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "ic_launcher.png",
+                              "type": "file"
+                            },
+                            {
+                              "name": "ic_launcher_background.png",
+                              "type": "file"
+                            },
+                            {
+                              "name": "ic_launcher_foreground.png",
+                              "type": "file"
+                            },
+                            {
+                              "name": "ic_launcher_round.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "mipmap-xxhdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "ic_launcher.png",
+                              "type": "file"
+                            },
+                            {
+                              "name": "ic_launcher_background.png",
+                              "type": "file"
+                            },
+                            {
+                              "name": "ic_launcher_foreground.png",
+                              "type": "file"
+                            },
+                            {
+                              "name": "ic_launcher_round.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "mipmap-xxxhdpi",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "ic_launcher.png",
+                              "type": "file"
+                            },
+                            {
+                              "name": "ic_launcher_background.png",
+                              "type": "file"
+                            },
+                            {
+                              "name": "ic_launcher_foreground.png",
+                              "type": "file"
+                            },
+                            {
+                              "name": "ic_launcher_round.png",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "values",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "colors.xml",
+                              "type": "file"
+                            },
+                            {
+                              "name": "ic_launcher_background.xml",
+                              "type": "file"
+                            },
+                            {
+                              "name": "strings.xml",
+                              "type": "file"
+                            },
+                            {
+                              "name": "styles.xml",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "xml",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "file_paths.xml",
+                              "type": "file"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "test",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "java",
+                      "type": "directory",
+                      "children": [
+                        {
+                          "name": "com",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "getcapacitor",
+                              "type": "directory",
+                              "children": [
+                                {
+                                  "name": "myapp",
+                                  "type": "directory",
+                                  "children": [
+                                    {
+                                      "name": "ExampleUnitTest.java",
+                                      "type": "file"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "build.gradle",
+          "type": "file"
+        },
+        {
+          "name": "capacitor.settings.gradle",
+          "type": "file"
+        },
+        {
+          "name": "gradle",
+          "type": "directory",
+          "children": [
+            {
+              "name": "wrapper",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "gradle-wrapper.jar",
+                  "type": "file"
+                },
+                {
+                  "name": "gradle-wrapper.properties",
+                  "type": "file"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "gradle.properties",
+          "type": "file"
+        },
+        {
+          "name": "gradlew",
+          "type": "file"
+        },
+        {
+          "name": "gradlew.bat",
+          "type": "file"
+        },
+        {
+          "name": "settings.gradle",
+          "type": "file"
+        },
+        {
+          "name": "variables.gradle",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": "capacitor.config.ts",
+      "type": "file"
+    },
+    {
+      "name": "docs",
+      "type": "directory",
+      "children": [
+        {
+          "name": "ANDROID_BUILD.md",
+          "type": "file"
+        },
+        {
+          "name": "CTO_REPORT.md",
+          "type": "file"
+        },
+        {
+          "name": "DEPLOYMENT.md",
+          "type": "file"
+        },
+        {
+          "name": "FULL_SYSTEM_AUDIT_REPORT.md",
+          "type": "file"
+        },
+        {
+          "name": "IG_MEMORY.md",
+          "type": "file"
+        },
+        {
+          "name": "OAUTH_HASH_ROUTER_GUIDE.md",
+          "type": "file"
+        },
+        {
+          "name": "Presence_Avatar_Architecture_Guide.txt",
+          "type": "file"
+        },
+        {
+          "name": "REPORT.md",
+          "type": "file"
+        },
+        {
+          "name": "repo_map.json",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": "google-play-assets",
+      "type": "directory",
+      "children": [
+        {
+          "name": "PLAY_STORE_METADATA.md",
+          "type": "file"
+        },
+        {
+          "name": "app-icon-512x512.png",
+          "type": "file"
+        },
+        {
+          "name": "feature-graphic-1024x500.png",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": "index.html",
+      "type": "file"
+    },
+    {
+      "name": "metadata.json",
+      "type": "file"
+    },
+    {
+      "name": "package-lock.json",
+      "type": "file"
+    },
+    {
+      "name": "package.json",
+      "type": "file"
+    },
+    {
+      "name": "providers",
+      "type": "directory",
+      "children": [
+        {
+          "name": "AppProvider.tsx",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": "public",
+      "type": "directory",
+      "children": [
+        {
+          "name": "googlef2cc72f43f58845a.html",
+          "type": "file"
+        },
+        {
+          "name": "images",
+          "type": "directory",
+          "children": [
+            {
+              "name": "Temp",
+              "type": "file"
+            },
+            {
+              "name": "backend-profile.png",
+              "type": "file"
+            },
+            {
+              "name": "ceo-profile.png",
+              "type": "file"
+            },
+            {
+              "name": "marketing-profile.png",
+              "type": "file"
+            },
+            {
+              "name": "owner-profile.png",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "mindflow-icon.svg",
+          "type": "file"
+        },
+        {
+          "name": "og-image.png",
+          "type": "file"
+        },
+        {
+          "name": "robots.txt",
+          "type": "file"
+        },
+        {
+          "name": "sitemap.xml",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": "scripts",
+      "type": "directory",
+      "children": [
+        {
+          "name": "backfill_embeddings.cjs",
+          "type": "file"
+        },
+        {
+          "name": "data",
+          "type": "directory",
+          "children": [
+            {
+              "name": "inject_chunk_aa",
+              "type": "file"
+            },
+            {
+              "name": "inject_chunk_ab",
+              "type": "file"
+            },
+            {
+              "name": "inject_chunk_ac",
+              "type": "file"
+            },
+            {
+              "name": "inject_chunk_ad",
+              "type": "file"
+            },
+            {
+              "name": "inject_embeddings.sql",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "fetch_all_questions.cjs",
+          "type": "file"
+        },
+        {
+          "name": "generate_injection_sql.cjs",
+          "type": "file"
+        },
+        {
+          "name": "inject.cjs",
+          "type": "file"
+        },
+        {
+          "name": "process_embeddings_repo_only.cjs",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": "src",
+      "type": "directory",
+      "children": [
+        {
+          "name": "App.tsx",
+          "type": "file"
+        },
+        {
+          "name": "assets",
+          "type": "directory",
+          "children": [
+            {
+              "name": "aalok.jpg",
+              "type": "file"
+            },
+            {
+              "name": "default-avatar.svg",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "assets.d.ts",
+          "type": "file"
+        },
+        {
+          "name": "components",
+          "type": "directory",
+          "children": [
+            {
+              "name": "Background",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "Fireballs.tsx",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "Button",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "Button.tsx",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "ErrorBoundary.tsx",
+              "type": "file"
+            },
+            {
+              "name": "PresenceProvider.tsx",
+              "type": "file"
+            },
+            {
+              "name": "ProtectedRoute.tsx",
+              "type": "file"
+            },
+            {
+              "name": "common",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "InstallPwaModal.tsx",
+                  "type": "file"
+                },
+                {
+                  "name": "PWAUpdateManager.tsx",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "layout",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "SidePanel.tsx",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "ui",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "Badge.tsx",
+                  "type": "file"
+                },
+                {
+                  "name": "Card.tsx",
+                  "type": "file"
+                },
+                {
+                  "name": "DownloadOptionsModal.tsx",
+                  "type": "file"
+                },
+                {
+                  "name": "DownloadReadyModal.tsx",
+                  "type": "file"
+                },
+                {
+                  "name": "MarkdownRenderer.tsx",
+                  "type": "file"
+                },
+                {
+                  "name": "Notification",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "Popup.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "Toast.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "ToastContainer.tsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "PresenceAvatar.tsx",
+                  "type": "file"
+                },
+                {
+                  "name": "PresenceDot.tsx",
+                  "type": "file"
+                },
+                {
+                  "name": "ProgressBar.tsx",
+                  "type": "file"
+                },
+                {
+                  "name": "ShimmerBlock.tsx",
+                  "type": "file"
+                },
+                {
+                  "name": "SynapticLoader.tsx",
+                  "type": "file"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "constants",
+          "type": "directory",
+          "children": [
+            {
+              "name": "config.ts",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "features",
+          "type": "directory",
+          "children": [
+            {
+              "name": "about",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "components",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "AalokProfile.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "AboutSVGs.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "AboutUs.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "DeveloperProfile.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "TeamMemberProfile.tsx",
+                      "type": "file"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "admin",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "components",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "AdminBulkUpdate.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "AdminReportsQueue.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "AdminUploadGK.tsx",
+                      "type": "file"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "ai",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "AIHome.tsx",
+                  "type": "file"
+                },
+                {
+                  "name": "AIHomeSVGs.tsx",
+                  "type": "file"
+                },
+                {
+                  "name": "Icons.tsx",
+                  "type": "file"
+                },
+                {
+                  "name": "chat",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "AIChatPage.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "ChatInput.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "ChatMessage.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "index.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useAIChat.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useQuota.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "utils",
+                      "type": "directory",
+                      "children": [
+                        {
+                          "name": "fileProcessing.ts",
+                          "type": "file"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "talk",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "AITalkPage.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "AITalkSummary.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "README.md",
+                      "type": "file"
+                    },
+                    {
+                      "name": "VoiceBlobVisualizer.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "audio-helpers.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "audio-player.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "audio-recorder.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useLiveAPI.ts",
+                      "type": "file"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "auth",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "AuthGuard.tsx",
+                  "type": "file"
+                },
+                {
+                  "name": "components",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "AuthPage.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "AuthPage.tsx.orig",
+                      "type": "file"
+                    },
+                    {
+                      "name": "AuthPage.tsx.rej",
+                      "type": "file"
+                    },
+                    {
+                      "name": "ProfilePage.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "RestoreAccountModal.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "SettingsPage.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "SubscriptionPage.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "SupportPage.tsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "context",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "AuthContext.tsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "hooks",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "useProfileStats.ts",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "utils",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "cropImage.ts",
+                      "type": "file"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "community",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "api",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "chatApi.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "communityApi.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "reportsApi.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "uploadMedia.ts",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "components",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "ChatListSkeleton.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "CommentSkeleton.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "CommentThread.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "CreatePostModal.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "PostCard.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "PostCardSkeleton.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "ReelSkeleton.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "SocialHeader.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "reports",
+                      "type": "directory",
+                      "children": [
+                        {
+                          "name": "BlockUserPromptModal.tsx",
+                          "type": "file"
+                        },
+                        {
+                          "name": "ReportModal.tsx",
+                          "type": "file"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "hooks",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "useSocialRealtime.ts",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "pages",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "ChatInputBar.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "ChatIntro.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "ChatMessageItem.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "ChatRooms.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "CommunityFeed.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "CommunitySearch.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "PostPage.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "ReelCommentsPage.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "ReelsFeed.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "UserProfile.tsx",
+                      "type": "file"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "flashcards",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "components",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "FlashcardSummary.tsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "utils",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "pdfGenerator.ts",
+                      "type": "file"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "idioms",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "IdiomsConfig.tsx",
+                  "type": "file"
+                },
+                {
+                  "name": "components",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "IdiomCard.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "IdiomNavigationPanel.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "IdiomSession.tsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "hooks",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "useIdiomFilterCounts.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useIdiomProgress.ts",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "utils",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "supabaseIdioms.ts",
+                      "type": "file"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "notifications",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "admin",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "AdminEditNotificationModal.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "AdminNotifications.tsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "components",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "NotificationBell.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "NotificationSettings.tsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "hooks",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "index.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useNotificationPreferences.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useNotifications.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "usePushNotifications.ts",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "pages",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "NotificationsPage.tsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "types",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "index.ts",
+                      "type": "file"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "ows",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "OWSConfig.tsx",
+                  "type": "file"
+                },
+                {
+                  "name": "components",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "OWSCard.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "OWSNavigationPanel.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "OWSSession.tsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "hooks",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "useOWSProgress.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useOwsFilterCounts.ts",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "utils",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "pdfGenerator.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "supabaseOws.ts",
+                      "type": "file"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "quiz",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "QuizLayout.tsx",
+                  "type": "file"
+                },
+                {
+                  "name": "components",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "AdminEditMaterialModal.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "AdminHome.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "AdminManageMaterials.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "AdminSVGs.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "AdminUploadMaterials.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "AiExplanationButton.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "AttemptedQuizCard.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "AttemptedQuizzes.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "BlueprintBuilder.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "BlueprintPreview.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "BlueprintPreviewWrapper.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "BookmarksPage.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "CookingLoader.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "Dashboard.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "Dashboard.tsx.bak",
+                      "type": "file"
+                    },
+                    {
+                      "name": "DashboardSVGs.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "EnglishQuizHome.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "ExamBlueprintsHub.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "GodQuizResult.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "Landing",
+                      "type": "directory",
+                      "children": [
+                        {
+                          "name": "AnimatedLogo.tsx",
+                          "type": "file"
+                        },
+                        {
+                          "name": "CinematicIntro.css",
+                          "type": "file"
+                        },
+                        {
+                          "name": "CinematicIntro.tsx",
+                          "type": "file"
+                        },
+                        {
+                          "name": "DemoCard.tsx",
+                          "type": "file"
+                        },
+                        {
+                          "name": "MobileDemoCard.tsx",
+                          "type": "file"
+                        },
+                        {
+                          "name": "MobileOnboarding.tsx",
+                          "type": "file"
+                        },
+                        {
+                          "name": "Typewriter.tsx",
+                          "type": "file"
+                        },
+                        {
+                          "name": "WelcomeIntro.tsx",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "LandingPage.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "McqsQuizHome.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "MockQuizResult.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "PerformanceAnalytics.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "QuizBottomNav.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "QuizBreadcrumbs.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "QuizConfig.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "QuizExplanation.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "QuizNavigationPanel.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "QuizOption.test.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "QuizOption.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "QuizOverallProgress.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "QuizProgress.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "QuizQuestionDisplay.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "QuizQuestionHeader.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "QuizResult.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "QuizReview.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "QuizStats.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "SavedQuizCard.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "SavedQuizzes.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "archive",
+                      "type": "directory",
+                      "children": [
+                        {
+                          "name": "AnimatedCounter.tsx",
+                          "type": "file"
+                        },
+                        {
+                          "name": "DonutChart.tsx",
+                          "type": "file"
+                        },
+                        {
+                          "name": "QuizResult.tsx",
+                          "type": "file"
+                        },
+                        {
+                          "name": "README.md",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "ui",
+                      "type": "directory",
+                      "children": [
+                        {
+                          "name": "Accordion.tsx",
+                          "type": "file"
+                        },
+                        {
+                          "name": "ActiveFiltersBar.tsx",
+                          "type": "file"
+                        },
+                        {
+                          "name": "ClaymorphismSwitch.css",
+                          "type": "file"
+                        },
+                        {
+                          "name": "ClaymorphismSwitch.tsx",
+                          "type": "file"
+                        },
+                        {
+                          "name": "FilterGroup.tsx",
+                          "type": "file"
+                        },
+                        {
+                          "name": "InstallPWA.tsx",
+                          "type": "file"
+                        },
+                        {
+                          "name": "MultiSelectDropdown.tsx",
+                          "type": "file"
+                        },
+                        {
+                          "name": "QuickStartButtons.tsx",
+                          "type": "file"
+                        },
+                        {
+                          "name": "ScrollableCapsules.tsx",
+                          "type": "file"
+                        },
+                        {
+                          "name": "SegmentedControl.tsx",
+                          "type": "file"
+                        },
+                        {
+                          "name": "SettingsModal.tsx",
+                          "type": "file"
+                        },
+                        {
+                          "name": "SettingsToggle.tsx",
+                          "type": "file"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "context",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "QuizContext.tsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "data",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "Synonym data.json",
+                      "type": "file"
+                    },
+                    {
+                      "name": "idioms.json",
+                      "type": "file"
+                    },
+                    {
+                      "name": "ows.json",
+                      "type": "file"
+                    },
+                    {
+                      "name": "questions.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "validate_synonyms_data.js",
+                      "type": "file"
+                    },
+                    {
+                      "name": "validation_report.json",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "engine",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "TestEngineController.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "blueprintMath.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "index.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "plugins",
+                      "type": "directory",
+                      "children": [
+                        {
+                          "name": "mcqPlugin.ts",
+                          "type": "file"
+                        },
+                        {
+                          "name": "synonymPlugin.ts",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "quizEngine.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "quizPlugin.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "timerWorker.ts",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "hooks",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "useAntiCheat.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useAutoSave.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useGodSessionTimer.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useLearningTimer.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useMockSessionTimer.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useMockTimer.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useOptimizedFilterCounts.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useQuestionIndex.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useQuiz.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useQuizSessionTimer.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useTextToSpeech.test.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useTextToSpeech.ts",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "layouts",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "ActiveQuizLayout.tsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "learning",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "LearningSession.tsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "live",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "LiveQuizRoom.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useGenAILive.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useGenAILive.ts.bak",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useGenAILive.ts.orig",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useGenAILive.ts.patch",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "mock",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "GodModeSession.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "MockSession.tsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "services",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "analyticsService.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "blueprintService.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "questionService.ts",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "stores",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "quizReducer.test.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "quizReducer.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useAnalyticsStore.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useBookmarkStore.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useFlashcardStore.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useQuizSessionStore.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useSyncStore.ts",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "types",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "blueprint.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "index.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "store.ts",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "utils",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "adminMaterialUtils.ts",
+                      "type": "file"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "school",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "SchoolDownloads.tsx",
+                  "type": "file"
+                },
+                {
+                  "name": "SchoolHome.tsx",
+                  "type": "file"
+                },
+                {
+                  "name": "SchoolSVGs.tsx",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "settings",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "components",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "AppPreferencesPage.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "DeleteAccountPage.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "MyReportsPage.tsx",
+                      "type": "file"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "synonyms",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "SynapticLoader.tsx",
+                  "type": "file"
+                },
+                {
+                  "name": "Synonym.html",
+                  "type": "file"
+                },
+                {
+                  "name": "SynonymsConfig.tsx",
+                  "type": "file"
+                },
+                {
+                  "name": "components",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "ConnectGame.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "ImposterGame.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "SpeedGame.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "SynonymCard.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "SynonymClusterList.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "SynonymFlashcardSession.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "SynonymNavigationPanel.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "SynonymPhase1Session.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "SynonymQuizSession.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "SynonymQuizSession.tsx.orig",
+                      "type": "file"
+                    },
+                    {
+                      "name": "SynonymsSVGs.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "WordDetailModal.tsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "hooks",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "useSynonymProgress.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "useSynonymsData.ts",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "services",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "synonymService.ts",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "utils",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "pdfGenerator.ts",
+                      "type": "file"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "tools",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "ToolsHome.tsx",
+                  "type": "file"
+                },
+                {
+                  "name": "ToolsSVGs.tsx",
+                  "type": "file"
+                },
+                {
+                  "name": "bilingual-pdf-maker",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "BilingualPdfMaker.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "utils",
+                      "type": "directory",
+                      "children": [
+                        {
+                          "name": "pdfGenerator.ts",
+                          "type": "file"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "flashcard-maker",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "FlashcardMaker.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "components",
+                      "type": "directory",
+                      "children": [
+                        {
+                          "name": "Editor.tsx",
+                          "type": "file"
+                        },
+                        {
+                          "name": "Preview.tsx",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "types.ts",
+                      "type": "file"
+                    },
+                    {
+                      "name": "utils",
+                      "type": "directory",
+                      "children": [
+                        {
+                          "name": "canvasDrawing.ts",
+                          "type": "file"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "quiz-pdf-ppt-generator",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "QuizPdfPptGenerator.tsx",
+                      "type": "file"
+                    },
+                    {
+                      "name": "components",
+                      "type": "directory",
+                      "children": [
+                        {
+                          "name": "GeneratorModal.tsx",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "utils",
+                      "type": "directory",
+                      "children": [
+                        {
+                          "name": "pdfGenerator.ts",
+                          "type": "file"
+                        },
+                        {
+                          "name": "pptGenerator.ts",
+                          "type": "file"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "text-exporter",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "TextExporter.tsx",
+                      "type": "file"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "hooks",
+          "type": "directory",
+          "children": [
+            {
+              "name": "useDependentFilters.ts",
+              "type": "file"
+            },
+            {
+              "name": "useFilterCounts.ts",
+              "type": "file"
+            },
+            {
+              "name": "useJSONDownloader.spec.ts",
+              "type": "file"
+            },
+            {
+              "name": "useJSONDownloader.ts",
+              "type": "file"
+            },
+            {
+              "name": "useLocalStorageState.ts",
+              "type": "file"
+            },
+            {
+              "name": "useMediaQuery.ts",
+              "type": "file"
+            },
+            {
+              "name": "useNavSpinner.ts",
+              "type": "file"
+            },
+            {
+              "name": "useNotification.ts",
+              "type": "file"
+            },
+            {
+              "name": "usePDFGenerator.ts",
+              "type": "file"
+            },
+            {
+              "name": "usePWAInstall.ts",
+              "type": "file"
+            },
+            {
+              "name": "useQuizSounds.ts",
+              "type": "file"
+            },
+            {
+              "name": "useSound.ts",
+              "type": "file"
+            },
+            {
+              "name": "useTimer.ts",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "index.css",
+          "type": "file"
+        },
+        {
+          "name": "index.tsx",
+          "type": "file"
+        },
+        {
+          "name": "layouts",
+          "type": "directory",
+          "children": [
+            {
+              "name": "MainLayout.tsx",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "lib",
+          "type": "directory",
+          "children": [
+            {
+              "name": "db.ts",
+              "type": "file"
+            },
+            {
+              "name": "haptics.ts",
+              "type": "file"
+            },
+            {
+              "name": "supabase.ts",
+              "type": "file"
+            },
+            {
+              "name": "syncService.ts",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "pages",
+          "type": "directory",
+          "children": [
+            {
+              "name": "PrivacyPolicy.tsx",
+              "type": "file"
+            },
+            {
+              "name": "TermsOfUse.tsx",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "providers",
+          "type": "directory",
+          "children": [
+            {
+              "name": "AppProvider.tsx",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "routes",
+          "type": "directory",
+          "children": [
+            {
+              "name": "AppRoutes.tsx",
+              "type": "file"
+            },
+            {
+              "name": "AppRoutes.tsx.orig",
+              "type": "file"
+            },
+            {
+              "name": "AppRoutes.tsx.rej",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "stores",
+          "type": "directory",
+          "children": [
+            {
+              "name": "useNotificationStore.ts",
+              "type": "file"
+            },
+            {
+              "name": "usePresenceStore.ts",
+              "type": "file"
+            },
+            {
+              "name": "useSettingsStore.ts",
+              "type": "file"
+            },
+            {
+              "name": "useSocialStore.ts",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "types",
+          "type": "directory",
+          "children": [
+            {
+              "name": "mammoth.d.ts",
+              "type": "file"
+            },
+            {
+              "name": "models.ts",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "utils",
+          "type": "directory",
+          "children": [
+            {
+              "name": "cn.ts",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "vite-env.d.ts",
+          "type": "file"
+        },
+        {
+          "name": "workers",
+          "type": "directory",
+          "children": [
+            {
+              "name": "filterWorker.ts",
+              "type": "file"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "supabase",
+      "type": "directory",
+      "children": [
+        {
+          "name": "functions",
+          "type": "directory",
+          "children": [
+            {
+              "name": "push-notifications",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "deno.json",
+                  "type": "file"
+                },
+                {
+                  "name": "index.ts",
+                  "type": "file"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "migrations",
+          "type": "directory",
+          "children": [
+            {
+              "name": "20240101000000_create_chat_message_likes.sql",
+              "type": "file"
+            },
+            {
+              "name": "20240311000000_create_user_synonym_interactions.sql",
+              "type": "file"
+            },
+            {
+              "name": "20240401000000_create_reels_tables.sql",
+              "type": "file"
+            },
+            {
+              "name": "20240401000001_seed_reels_data.sql",
+              "type": "file"
+            },
+            {
+              "name": "20250328_notification_system.sql",
+              "type": "file"
+            },
+            {
+              "name": "20250328_notification_system_fix.sql",
+              "type": "file"
+            },
+            {
+              "name": "20250329000000_deduplicate_idioms.sql",
+              "type": "file"
+            },
+            {
+              "name": "20250329000001_deduplicate_idioms_by_phrase.sql",
+              "type": "file"
+            },
+            {
+              "name": "20250401000000_account_deletion.sql",
+              "type": "file"
+            },
+            {
+              "name": "20250401000001_account_deletion_rpc.sql",
+              "type": "file"
+            },
+            {
+              "name": "20250501000000_community_blocking.sql",
+              "type": "file"
+            },
+            {
+              "name": "20250510000000_create_reporting_system.sql",
+              "type": "file"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "tsconfig.json",
+      "type": "file"
+    },
+    {
+      "name": "utils",
+      "type": "directory",
+      "children": [
+        {
+          "name": "cn.ts",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": "verification",
+      "type": "directory",
+      "children": [
+        {
+          "name": "mock_engine_error.png",
+          "type": "file"
+        },
+        {
+          "name": "synonyms_config_debug_final.png",
+          "type": "file"
+        },
+        {
+          "name": "synonyms_config_success.png",
+          "type": "file"
+        },
+        {
+          "name": "verify_dropdown_open.py",
+          "type": "file"
+        },
+        {
+          "name": "verify_dropdown_render.py",
+          "type": "file"
+        },
+        {
+          "name": "verify_dropdown_screenshot.py",
+          "type": "file"
+        },
+        {
+          "name": "verify_engine.py",
+          "type": "file"
+        },
+        {
+          "name": "verify_engine2.py",
+          "type": "file"
+        },
+        {
+          "name": "verify_engine3.py",
+          "type": "file"
+        },
+        {
+          "name": "verify_engine4.py",
+          "type": "file"
+        },
+        {
+          "name": "verify_filter_dropdown.py",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": "vite.config.ts",
+      "type": "file"
+    }
+  ]
+}

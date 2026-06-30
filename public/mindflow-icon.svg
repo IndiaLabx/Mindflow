@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4338ca;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  
+  <!-- Background: Rounded Squircle with Gradient -->
+  <rect width="512" height="512" rx="128" fill="url(#grad1)" />
+  
+  <!-- Brain/Circuit Icon -->
+  <g transform="translate(106, 106) scale(0.6)" fill="none" stroke="white" stroke-width="40" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Left Hemisphere -->
+    <path d="M125 200c0-50 30-90 80-90s80 40 80 90c0 20-10 40-25 55" />
+    <path d="M100 280c-30 0-60-20-60-70 0-40 30-80 70-80" />
+    <path d="M120 350c-40 0-70-30-70-70" />
+    <path d="M205 380c-50 0-85-30-85-80" />
+    
+    <!-- Right Hemisphere -->
+    <path d="M375 200c0-50-30-90-80-90s-80 40-80 90c0 20 10 40 25 55" />
+    <path d="M400 280c30 0 60-20 60-70 0-40-30-80-70-80" />
+    <path d="M380 350c40 0 70-30 70-70" />
+    <path d="M295 380c50 0 85-30 85-80" />
+    
+    <!-- Central Connections (Synapses) -->
+    <circle cx="250" cy="150" r="20" fill="white" stroke="none" />
+    <circle cx="250" cy="250" r="20" fill="white" stroke="none" />
+    <circle cx="250" cy="350" r="20" fill="white" stroke="none" />
+    
+    <!-- Electric Spark Details -->
+    <path d="M250 150 L250 100" stroke-width="30" />
+    <path d="M250 380 L250 420" stroke-width="30" />
+  </g>
+</svg>

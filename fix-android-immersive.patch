@@ -1,0 +1,167 @@
+diff --git a/android/app/src/main/java/com/aklabxmindflow/app/MainActivity.java b/android/app/src/main/java/com/aklabxmindflow/app/MainActivity.java
+index 44b6e7f..8db6ac5 100644
+--- a/android/app/src/main/java/com/aklabxmindflow/app/MainActivity.java
++++ b/android/app/src/main/java/com/aklabxmindflow/app/MainActivity.java
+@@ -1,44 +1,11 @@
+ package com.aklabxmindflow.app;
+
+ import android.os.Bundle;
+-import android.view.View;
+ import com.getcapacitor.BridgeActivity;
+
+ public class MainActivity extends BridgeActivity {
+     @Override
+     public void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+-        hideSystemUI();
+-    }
+-
+-    @Override
+-    public void onResume() {
+-        super.onResume();
+-        hideSystemUI();
+-    }
+-
+-    @Override
+-    public void onWindowFocusChanged(boolean hasFocus) {
+-        super.onWindowFocusChanged(hasFocus);
+-        if (hasFocus) {
+-            hideSystemUI();
+-        }
+-    }
+-
+-    private void hideSystemUI() {
+-        // Enables regular immersive mode.
+-        // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
+-        // Or for "sticky immersive," replace it with SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+-        View decorView = getWindow().getDecorView();
+-        decorView.setSystemUiVisibility(
+-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+-                // Set the content to appear under the system bars so that the
+-                // content doesn't resize when the system bars hide and show.
+-                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+-                // Hide the nav bar and status bar
+-                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+-                | View.SYSTEM_UI_FLAG_FULLSCREEN);
+     }
+ }
+diff --git a/android/app/src/main/res/values/styles.xml b/android/app/src/main/res/values/styles.xml
+index be874e5..dfca6d3 100644
+--- a/android/app/src/main/res/values/styles.xml
++++ b/android/app/src/main/res/values/styles.xml
+@@ -13,10 +13,15 @@
+         <item name="windowActionBar">false</item>
+         <item name="windowNoTitle">true</item>
+         <item name="android:background">@null</item>
++
++        <!-- Enable transparent system bars for edge-to-edge layout -->
++        <item name="android:navigationBarColor">@android:color/transparent</item>
++        <item name="android:statusBarColor">@android:color/transparent</item>
++        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+     </style>
+
+
+     <style name="AppTheme.NoActionBarLaunch" parent="Theme.SplashScreen">
+         <item name="android:background">@drawable/splash</item>
+     </style>
+-</resources>
+\ No newline at end of file
++</resources>
+diff --git a/src/features/community/pages/ChatInputBar.tsx b/src/features/community/pages/ChatInputBar.tsx
+index b4d54b2..86d9d29 100644
+--- a/src/features/community/pages/ChatInputBar.tsx
++++ b/src/features/community/pages/ChatInputBar.tsx
+@@ -41,7 +41,7 @@ export const ChatInputBar: React.FC<ChatInputBarProps> = ({ onSend, onUpload, is
+
+   if (isBlocked) {
+     return (
+-      <div className="p-3 bg-white border-t border-gray-100 pb-[env(safe-area-inset-bottom)] relative w-full flex items-center justify-center">
++      <div className="p-3 bg-white border-t border-gray-100 pb-[calc(0.75rem_+_env(safe-area-inset-bottom))] relative w-full flex items-center justify-center">
+         <div className="bg-gray-100 border border-gray-200 rounded-[28px] p-3 text-center w-full text-[14px] text-gray-600 font-medium h-[52px] flex items-center justify-center">
+           You cannot reply to this conversation anymore.
+         </div>
+@@ -51,7 +51,7 @@ export const ChatInputBar: React.FC<ChatInputBarProps> = ({ onSend, onUpload, is
+
+   if (isBlocker) {
+     return (
+-      <div className="p-3 bg-white border-t border-gray-100 pb-[env(safe-area-inset-bottom)] relative w-full flex items-center justify-center gap-2">
++      <div className="p-3 bg-white border-t border-gray-100 pb-[calc(0.75rem_+_env(safe-area-inset-bottom))] relative w-full flex items-center justify-center gap-2">
+         <div className="bg-gray-100 border border-gray-200 rounded-[28px] px-4 text-center flex-1 text-[14px] text-gray-600 font-medium h-[52px] flex items-center justify-center">
+           You have blocked this user. Unblock to send a message.
+         </div>
+@@ -67,7 +67,7 @@ export const ChatInputBar: React.FC<ChatInputBarProps> = ({ onSend, onUpload, is
+
+   return (
+
+-    <form onSubmit={handleSubmit} className="p-3 bg-white border-t border-gray-100 pb-[env(safe-area-inset-bottom)] relative w-full">
++    <form onSubmit={handleSubmit} className="p-3 bg-white border-t border-gray-100 pb-[calc(0.75rem_+_env(safe-area-inset-bottom))] relative w-full">
+       <div aria-live="polite" aria-atomic="true">
+         {isUploading && (
+           <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs font-semibold text-indigo-500 animate-pulse bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-full shadow-sm border border-gray-100">
+diff --git a/src/features/community/pages/ChatRooms.tsx b/src/features/community/pages/ChatRooms.tsx
+index b6fd1a0..dad31db 100644
+--- a/src/features/community/pages/ChatRooms.tsx
++++ b/src/features/community/pages/ChatRooms.tsx
+@@ -311,7 +311,7 @@ const ActiveChatRoom: React.FC<{ room: ChatRoom; onBack: () => void }> = ({ room
+   };
+
+   return (
+-    <div className="fixed inset-0 z-[100] bg-white flex flex-col w-full md:relative md:h-[calc(100vh-70px)] md:max-w-2xl md:mx-auto md:border-x md:border-gray-100 md:shadow-sm">
++    <div className="fixed inset-0 z-[100] bg-white flex flex-col w-full md:relative md:h-[calc(100dvh-70px)] md:max-w-2xl md:mx-auto md:border-x md:border-gray-100 md:shadow-sm">
+       {/* Header */}
+       <div className="flex items-center gap-3 p-4 bg-white/80 backdrop-blur-xl border-b border-gray-200 sticky top-0 z-10">
+         <button onClick={onBack} className="p-2 -ml-2 rounded-full hover:bg-gray-100 text-gray-800" aria-label="Go back">
+diff --git a/src/features/community/pages/PostPage.tsx b/src/features/community/pages/PostPage.tsx
+index 3e04720..a5a8e40 100644
+--- a/src/features/community/pages/PostPage.tsx
++++ b/src/features/community/pages/PostPage.tsx
+@@ -183,7 +183,7 @@ export const PostPage: React.FC = () => {
+       </div>
+
+       {/* Comment Input Sticky Bottom */}
+-      <div className="fixed bottom-[56px] left-0 right-0 max-w-3xl mx-auto bg-white border-t border-gray-200 p-3 z-40 pb-[env(safe-area-inset-bottom)] shadow-[0_-10px_20px_rgba(255,255,255,1)]">
++      <div className="fixed bottom-0 left-0 right-0 max-w-3xl mx-auto bg-white border-t border-gray-200 p-3 z-40 pb-[calc(0.75rem_+_env(safe-area-inset-bottom))] shadow-[0_-10px_20px_rgba(255,255,255,1)]">
+         {replyingTo && (
+           <div className="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-t-lg mb-2 -mt-3 mx-1 border border-gray-100 border-b-0">
+             <span className="text-xs text-gray-500">Replying to <span className="font-semibold text-gray-900">{replyingTo.username}</span></span>
+diff --git a/src/features/community/pages/ReelCommentsPage.tsx b/src/features/community/pages/ReelCommentsPage.tsx
+index e27f965..d7962c0 100644
+--- a/src/features/community/pages/ReelCommentsPage.tsx
++++ b/src/features/community/pages/ReelCommentsPage.tsx
+@@ -176,7 +176,7 @@ export const ReelCommentsPage: React.FC = () => {
+       </div>
+
+       {/* Comment Input Sticky Bottom */}
+-      <div className="fixed bottom-[56px] left-0 right-0 max-w-3xl mx-auto bg-white border-t border-gray-200 p-3 z-40 pb-[env(safe-area-inset-bottom)] shadow-[0_-10px_20px_rgba(255,255,255,1)]">
++      <div className="fixed bottom-0 left-0 right-0 max-w-3xl mx-auto bg-white border-t border-gray-200 p-3 z-40 pb-[calc(0.75rem_+_env(safe-area-inset-bottom))] shadow-[0_-10px_20px_rgba(255,255,255,1)]">
+         {replyingTo && (
+           <div className="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-t-lg mb-2 -mt-3 mx-1 border border-gray-100 border-b-0">
+             <span className="text-xs text-gray-500">Replying to <span className="font-semibold text-gray-900">{replyingTo.username}</span></span>
+diff --git a/src/features/quiz/components/LandingPage.tsx b/src/features/quiz/components/LandingPage.tsx
+index 97d6b69..ffb7c53 100644
+--- a/src/features/quiz/components/LandingPage.tsx
++++ b/src/features/quiz/components/LandingPage.tsx
+@@ -369,7 +369,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onLoginC
+       </div>
+
+       {/* Footer Strip / Feature Ticker */}
+-      <div className="w-full border-t border-white/50 dark:border-slate-800/50 bg-white dark:bg-gray-800 backdrop-blur-lg py-6 mt-auto pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
++      <div className="w-full border-t border-white/50 dark:border-slate-800/50 bg-white dark:bg-gray-800 backdrop-blur-lg py-6 mt-auto pb-[calc(1.5rem_+_env(safe-area-inset-bottom))]">
+         <div className="max-w-7xl mx-auto px-4 flex flex-wrap justify-center md:justify-between gap-8 text-slate-400 dark:text-slate-500 text-xs md:text-sm font-bold uppercase tracking-widest mb-4">
+           <div className="flex items-center gap-2 hover:text-indigo-500 transition-colors cursor-default"><Zap className="w-4 h-4" /> Instant Evaluation</div>
+           <div className="hidden md:block w-1 h-1 rounded-full bg-slate-300"></div>
+diff --git a/src/layouts/MainLayout.tsx b/src/layouts/MainLayout.tsx
+index 4844c26..21ae967 100644
+--- a/src/layouts/MainLayout.tsx
++++ b/src/layouts/MainLayout.tsx
+@@ -261,7 +261,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
+
+       <nav className={cn(
+         "main-layout-nav",
+-        "fixed bottom-0 left-0 w-full z-[10000] transition-colors duration-300 pb-[env(safe-area-inset-bottom)] group overflow-visible",
++        "fixed bottom-0 left-0 w-full z-[10000] transition-colors duration-300 pb-[env(safe-area-inset-bottom)] pt-2 group overflow-visible",
+         isReviewMode || isAIFullScreen ? "hidden" : "block"
+       )}>
+         {/* Glow Background Layer */}

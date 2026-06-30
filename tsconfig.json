@@ -1,0 +1,59 @@
+{
+  // TypeScript Configuration
+  // Configures the TypeScript compiler for a React + Vite project using ESNext modules.
+  "compilerOptions": {
+    // Target ECMAScript version
+    "target": "ES2022",
+    // Enable experimental decorators
+    "experimentalDecorators": true,
+    // Define fields in class are not standard
+    "useDefineForClassFields": false,
+    // Module code generation
+    "module": "ESNext",
+    // List of library files to be included in the compilation
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    // Skip type checking of declaration files
+    "skipLibCheck": true,
+    // List of names of type definitions to include
+    "types": [
+      "node",
+      "vite/client"
+    ],
+    // Module resolution strategy
+    "moduleResolution": "bundler",
+    // Transpile each file as a separate module
+    "isolatedModules": true,
+    // Force module detection
+    "moduleDetection": "force",
+    // Allow JavaScript files to be compiled
+    "allowJs": true,
+    // Include modules imported with .json extension
+    "resolveJsonModule": true,
+    // Specify JSX code generation
+    "jsx": "react-jsx",
+    // Base directory to resolve non-relative module names
+    "baseUrl": ".",
+    // Path mapping for aliases (e.g., @/* -> src/*)
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    // Allow importing files with TypeScript extensions
+    "allowImportingTsExtensions": true,
+    // Do not emit output (Vite handles the build)
+    "noEmit": true
+  },
+  // Files/directories to include in the compilation
+  "include": [
+    "src"
+  ],
+  // Files/directories to exclude
+  "exclude": [
+    "node_modules"
+  ]
+}

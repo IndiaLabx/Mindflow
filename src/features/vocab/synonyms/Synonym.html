@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Vocabulary Tool</title>
+    <!-- Font Awesome is still included as your JS has some logic for it, though primary icons are CSS/text based now -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --success-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --warning-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            
+            --primary-color: #667eea; /* Kept for potential JS use if needed, but gradients are primary */
+            --primary-dark: #4c63d2; /* Kept */
+            
+            --text-primary: #2d3748; /* Base text for light backgrounds */
+            --text-secondary: #4a5568;
+            --text-light: #718096;
+            --text-on-dark-primary: rgb(14, 13, 13); /* For text on dark/gradient backgrounds */
+            --text-on-dark-secondary: rgba(255, 255, 255, 0.85);
+            
+            --bg-primary: #f7fafc; /* Not used if body has gradient */
+            --bg-secondary: #ffffff; /* Not used if body has gradient */
+            --bg-glass: rgba(255, 255, 255, 0.25);
+            --bg-glass-dark: rgba(255, 255, 255, 0.1);
+            
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1), 0 6px 10px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 40px rgba(0,0,0,0.1), 0 6px 20px rgba(0,0,0,0.1);
+            
+            --border-radius-xs: 4px; /* New for more rectangular look */
+            --border-radius-sm: 8px;
+            --border-radius-md: 12px;
+            --border-radius-lg: 16px;
+            --border-radius-xl: 24px;
+            
+            --transition-fast: 0.15s ease-out;
+            --transition-normal: 0.3s ease-out;
+            --transition-slow: 0.5s ease-out;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: margin-left var(--transition-normal);
+            overflow-x: hidden;
+            position: relative;
+            color: var(--text-on-dark-primary); /* Default text color for body */
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translateX(0) translateY(0) scale(1); }
+            33% { transform: translateX(-10px) translateY(10px) scale(1.05); }
+            66% { transform: translateX(10px) translateY(-5px) scale(0.95); }
+        }
+
+        #nav-menu-icon {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 56px;
+            height: 56px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1002;
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-normal);
+            font-size: 20px; /* Size of the icon character */
+            color: white; /* Color of the icon character */
+        }
+
+        #nav-menu-icon:hover {
+            transform: scale(1.1) rotate(90deg);
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow-xl);
+        }
+
+        #nav-menu-icon::before {
+            content: '☰'; /* Hamburger icon */
+            transition: all var(--transition-normal);
+        }
+
+        #nav-menu-icon.open::before {
+            content: '✕'; /* Close icon */
+            transform: rotate(180deg);
+        }
+
+        #navigation-panel {
+            position: fixed;
+            top: 0;
+            left: -320px; /* Ensure this matches JS for body.style.marginLeft */
+            width: 300px;
+            height: 100vh;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1001;
+            transition: left var(--transition-normal);
+            overflow-y: auto;
+            padding-top: 80px; /* Space for nav icon */
+            box-shadow: var(--shadow-xl);
+            color: var(--text-on-dark-primary);
+        }
+
+        #navigation-panel.open {
+            left: 0;
+        }
+
+        .nav-group-header {
+            padding: 16px 20px;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-fast);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-on-dark-primary);
+            font-weight: 600;
+        }
+
+        .nav-group-header:hover {
+            background: rgba(255, 255, 255, 0.1);
+            padding-left: 24px;
+        }
+
+        .group-title { /* Class used in original JS */
+            flex-grow: 1;
+            font-size: 0.95em;
+            line-height: 1.4;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            max-width: 160px; /* Adjusted for button and arrow */
+            margin-right: 8px;
+        }
+
+        .load-part-btn { /* Class used in original JS */
+            font-size: 0.75em;
+            padding: 6px 12px;
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all var(--transition-fast);
+            box-shadow: var(--shadow-sm);
+            margin-left: 8px;
+        }
+
+        .load-part-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .arrow { /* Class used in original JS */
+            transition: transform var(--transition-normal);
+            font-size: 0.9em;
+            margin-left: 8px;
+        }
+
+        .nav-group-header.open .arrow {
+            transform: rotate(90deg);
+        }
+
+        .nav-group-content { /* Class used in original JS */
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-normal);
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-question-list { /* Class used in original JS */
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+            gap: 8px;
+            padding: 16px;
+        }
+
+        .nav-question-list li a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--text-on-dark-primary);
+            text-decoration: none;
+            border-radius: var(--border-radius-sm);
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: all var(--transition-fast);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-question-list li a:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-question-list li a.active-q-link { /* Class used in original JS */
+            background: var(--secondary-gradient);
+            box-shadow: var(--shadow-md);
+            font-weight: 700;
+            color: white;
+        }
+
+        #nav-overlay { /* ID used in original JS */
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            transition: opacity var(--transition-normal); /* Fading transition */
+        }
+        #nav-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+
+        .container { /* Class used in original JS */
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 32px;
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-xl);
+            text-align: center;
+            width: 95%;
+            max-width: 900px;
+            margin: 100px 16px 40px 16px;
+            position: relative;
+            overflow: hidden;
+            animation: containerFadeIn 0.8s ease-out;
+            color: var(--text-on-dark-primary); /* Default text color for container contents */
+        }
+
+        @keyframes containerFadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.1) 0%, 
+                rgba(255, 255, 255, 0.05) 50%, 
+                rgba(255, 255, 255, 0.1) 100%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .serial-info-container { /* Class used in original JS */
+            display: flex;
+            justify-content: space-between; /* This positions items at opposite ends */
+            align-items: center;
+            padding: 0 0 20px 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        #groupWordCounter, #overallWordCounter { /* IDs used in original JS */
+            padding: 6px 12px; /* Adjusted padding for smaller box */
+            background: var(--bg-glass-dark); /* Slightly darker glass for contrast */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: var(--border-radius-xs); /* More rectangular */
+            font-weight: 600;
+            color: var(--text-on-dark-primary);
+            font-size: 1.05em; /* Slightly smaller font */
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-fast);
+            white-space: nowrap; /* Prevent wrapping */
+        }
+        #groupWordCounter:hover, #overallWordCounter:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .current-group-display { /* ID used as currentGroupDisplay in JS, styled as class */
+            font-size: 1.1em;
+            color: var(--text-on-dark-secondary);
+            margin-bottom: 16px;
+            font-weight: 600;
+            text-align: left;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius-md);
+            border-left: 4px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .word-container { /* Class used in original JS */
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .word-display { /* ID used as wordDisplay in JS, styled as class */
+            font-size: clamp(4.8rem, 9vw, 7.5rem); /* Enlarged font size */
+            font-weight: 800;
+            color: white; /* Changed to white for better contrast */
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3), 2px 3px 5px rgba(0,0,0,0.5); /* Added black shadow */
+            margin: 0;
+            min-height: 80px; /* Adjusted min-height for larger font */
+            display: flex;
+            align-items: center;
+            animation: wordAppear 0.6s ease-out, oscillateWord 4s ease-in-out infinite 0.7s; /* Added oscillateWord */
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            text-align: center; /* Ensure it's centered if it wraps */
+            max-width: 100%;
+            line-height: 1.2;
+            padding: 10px 0; /* Padding for breathing room for oscillation */
+        }
+        @keyframes wordAppear {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes oscillateWord { /* To-and-fro animation */
+            0%, 100% { transform: translateX(-8px); }
+            50% { transform: translateX(8px); }
+        }
+
+
+        #tts-button { /* ID used in original JS */
+            background: var(--accent-gradient);
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-md);
+            font-size: 1.2em; /* For the emoji/text icon */
+        }
+        #tts-button:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: var(--shadow-lg);
+        }
+        #tts-button:active { transform: scale(0.95); }
+
+        .main-word-pos { /* ID used as mainWordPos in JS, styled as class */
+            font-size: 1.2em;
+            font-style: italic;
+            color: var(--text-on-dark-secondary);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .repetition-count { /* Class used in original JS */
+            font-style: normal;
+            font-weight: 700;
+            background: var(--warning-gradient);
+            color: white;
+            padding: 4px 8px;
+            border-radius: var(--border-radius-sm);
+            margin-left: 8px;
+            box-shadow: var(--shadow-sm);
+            font-size: 0.8em; /* Slightly smaller */
+        }
+
+        .info-area { /* Class used on multiple elements in original JS */
+            font-size: 1.1em; /* Base size, text inside can vary */
+            color: black; /* Default text color for info areas */
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: var(--border-radius-lg);
+            text-align: left;
+            backdrop-filter: blur(10px);
+            transition: all var(--transition-normal);
+            overflow: hidden; /* Important for animations and layout */
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        .info-area:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        #mainWordMeaningArea { /* ID used in original JS */
+            background: linear-gradient(135deg, rgba(79, 172, 254, 0.2), rgba(0, 242, 254, 0.2));
+            border-left: 4px solid var(--accent-gradient); /* Using the defined gradient */
+            color: black;
+        }
+        #synonymsArea { /* ID used in original JS */
+            background: linear-gradient(135deg, rgba(67, 233, 123, 0.2), rgba(56, 249, 215, 0.2));
+            border-left: 4px solid var(--success-gradient);
+        }
+        #antonymsArea { /* ID used in original JS */
+            background: linear-gradient(135deg, rgba(250, 112, 154, 0.2), rgba(254, 225, 64, 0.2));
+            border-left: 4px solid var(--warning-gradient);
+        }
+
+        .info-area h3 {
+            margin-top: 0;
+            font-size: 1.4em;
+            color: var(--text-on-dark-primary);
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius-md);
+            backdrop-filter: blur(10px);
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .info-area ul { list-style-type: none; padding: 0; margin: 0; }
+        .info-area ul li {
+            padding: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-fast);
+        }
+        .info-area ul li:last-child { border-bottom: none; }
+
+        .item-header-clickable { /* Class used in original JS */
+            display: flex;
+            align-items: center;
+            padding: 16px 12px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            border-radius: var(--border-radius-sm); /* For hover effect */
+        }
+        .item-header-clickable:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(4px);
+        }
+        .item-expand-icon { /* Class used in original JS */
+            margin-right: 12px;
+            font-size: 0.9em;
+            color: var(--text-on-dark-secondary);
+            transition: transform var(--transition-normal);
+            width: 16px;
+            display: inline-block; text-align: center;
+        }
+        .item-header-clickable.expanded .item-expand-icon { /* `expanded` class added by JS */
+            transform: rotate(90deg);
+            color: var(--text-on-dark-primary);
+        }
+        .item-text-main { /* Class used in original JS */
+            font-weight: 600;
+            color: var(--text-on-dark-primary);
+            font-size: 1.1em;
+            flex-grow: 1;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .item-collapsible-details { /* Class used in original JS */
+            display: none; /* Controlled by JS */
+            padding: 16px 20px 20px 44px; /* Indent content */
+            background: rgba(255, 255, 255, 0.05);
+            border-top: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 0 0 var(--border-radius-sm) var(--border-radius-sm);
+            animation: detailsSlideDown 0.3s ease-out;
+        }
+        @keyframes detailsSlideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .item-details-group { /* Class used in original JS */
+            font-size: 0.9em;
+            color: var(--text-on-dark-secondary);
+            margin-bottom: 12px;
+        }
+        .item-details-pos { /* Class used in original JS */
+            font-weight: 600;
+            color: var(--text-on-dark-primary); /* Brighter for POS */
+            margin-right: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            display: inline-block; /* To allow padding and bg */
+        }
+
+        .item-meaning, .item-hindi-meaning { /* Classes used in original JS */
+            font-size: 0.95em;
+            color: black;
+            border-left: 3px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 16px;
+            margin: 12px 0;
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius-sm);
+            backdrop-filter: blur(5px); /* Subtle blur for detail boxes */
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        .item-hindi-meaning.hindi-text { /* Original JS adds .hindi-text */
+            border-left-color: rgba(243, 156, 18, 0.8); /* Accent for Hindi */
+            background: rgba(243, 156, 18, 0.1);
+            color: var(--text-on-dark-primary); /* Ensure good contrast */
+            font-weight: 500;
+        }
+        
+        .main-word-info-text { /* Class used in original JS for main word meaning */
+            padding: 16px 0;
+            line-height: 1.6;
+            color: black;
+            font-size: 1.09em;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        .main-word-info-text.hindi-text { /* Original JS adds .hindi-text */
+            font-weight: 600; /* Make Hindi prominent */
+            color: var(--text-on-dark-primary);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 16px;
+            border-radius: var(--border-radius-md);
+            margin-top: 12px;
+        }
+
+        .buttons-container { /* Class used in original JS */
+            display: flex;
+            flex-direction: row; /* Stack 'Show Details' and prev/next row */
+            align-items: center; /* Center items horizontally */
+            justify-content: center; 
+            gap: 20px; /* Space between 'Show Details' and prev/next row */
+            margin-top: 32px;
+        }
+
+        .buttons-container button {
+            background: var(--primary-gradient); /* Default button gradient */
+            color: white;
+            border: none;
+            width: 100px; /* Fixed width for circular buttons */
+            height: 100px; /* Fixed height for circular buttons */
+            font-size: 0.90em; /* Adjusted for circular buttons */
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 50%; /* Circular shape */
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+            display: flex; /* To center text inside */
+            align-items: center;
+            justify-content: center;
+            text-align: center; /* For text wrapping if needed */
+            padding: 10px; /* Padding inside button */
+            line-height: 1.2; /* Help with text centering */
+        }
+        /* Special size for 'Show Details' if it's bigger */
+        #toggleDetailsBtn {
+            width: 100px;
+            height: 100px;
+             background: linear-gradient(135deg, #e7dfdb 0%, #b49b79 100%); /* Specific gradient for this button */
+             color: rgb(8, 8, 8);
+        }
+
+        .buttons-container button::before { /* Shine effect */
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        .buttons-container button:hover::before { left: 100%; }
+        .buttons-container button:hover {
+            transform: translateY(-3px) scale(1.05); /* Added scale on hover */
+            box-shadow: var(--shadow-lg);
+        }
+        .buttons-container button:active { transform: translateY(-1px) scale(0.98); } /* Added scale on active */
+        .buttons-container button:disabled {
+            background: grey;
+            opacity: 0.6;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        .buttons-container button:disabled:hover {
+            transform: none;
+        }
+        .buttons-container button:disabled::before {
+            display: none;
+        }
+
+        #loadingIndicator { /* ID used in original JS */
+            font-size: 1.3em;
+            color: var(--text-on-dark-primary);
+            text-align: center;
+            padding: 40px;
+            animation: pulse 2s infinite;
+            width: 100%; /* Ensure it takes full width if it's the only content */
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                /* On mobile, if nav is open, body doesn't shift. Nav overlays. */
+                margin-left: 0 !important; 
+            }
+            .container {
+                margin: 80px 8px 20px 8px;
+                padding: 20px;
+                width: calc(100% - 16px);
+            }
+            #nav-menu-icon { top: 16px; left: 16px; width: 48px; height: 48px; }
+            #navigation-panel { width: 280px; left: -300px; /* Adjust if width changes */ }
+
+            .serial-info-container { flex-direction: row; gap: 8px; align-items: center; } /* Keep on one row if possible */
+            #groupWordCounter, #overallWordCounter { text-align: center; flex-grow: 1; /* Allow them to take space */ }
+            
+            .word-container { flex-direction: column; gap: 12px; }
+            .word-display { font-size: clamp(4.2rem, 7vw, 6rem); text-align: center;  justify-content: center; width: 100%; } /* Adjusted mobile word size */
+            .info-area { padding: 16px; margin: 16px 0; }
+            .item-collapsible-details { padding: 12px 16px 16px 32px; }
+            
+            .buttons-container { margin-top: 24px; gap: 10px; }
+            .prev-next-row { width: 100%; max-width: 240px; /* Adjust for smaller screens */ }
+            .buttons-container button {
+                width: 90px; height: 90px; font-size: 0.8em;
+            }
+            #toggleDetailsBtn {
+                width: 100px; height: 100px;
+            }
+
+            .nav-question-list { grid-template-columns: repeat(auto-fill, minmax(44px, 1fr)); gap: 6px; padding: 12px; }
+            .group-title { max-width: 130px; font-size: 0.9em; } /* Adjust for smaller nav panel */
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 16px; margin: 70px 4px 16px 4px; }
+            .word-display { font-size: clamp(2.5rem, 9vw, 3.5rem); line-height: 1.1; } /* Further adjust word size */
+            .info-area h3 { font-size: 1.2em; padding: 10px 12px; }
+            .item-header-clickable { padding: 12px 8px; }
+            .item-collapsible-details { padding: 10px 12px 12px 28px; }
+
+            #groupWordCounter, #overallWordCounter { font-size: 0.75em; padding: 4px 8px; }
+            .serial-info-container { padding-bottom: 15px; margin-bottom: 15px; }
+
+            .buttons-container button {
+                width: 80px; height: 80px; font-size: 0.75em;
+            }
+            #toggleDetailsBtn {
+                width: 90px; height: 90px;
+            }
+            .prev-next-row { width: 100%; max-width: 200px; }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            /* Styles here are already somewhat dark-theme friendly due to gradient bg */
+            /* :root { --text-primary: #e2e8f0; ... }  Adjust if needed for non-gradient parts */
+        }
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+             .word-display { animation: wordAppear 0.01ms ease-out; } /* Keep appear but not oscillate */
+        }
+        @media (prefers-contrast: high) {
+            .container { border: 2px solid white; }
+            .info-area { border: 2px solid rgba(255, 255, 255, 0.7); }
+            .buttons-container button { border: 1px solid white; }
+        }
+    </style>
+</head>
+<body>
+    <!--#include virtual="/_header.shtml" -->
+    <div id="nav-menu-icon"></div> <!-- Icon content (☰/✕) is handled by CSS ::before -->
+    <div id="nav-overlay"></div>
+    <div id="navigation-panel">
+        <!-- Navigation content populated by JS -->
+    </div>
+
+    <div class="container">
+        <div id="loadingIndicator">Loading Vocabulary...</div>
+        <div class="serial-info-container" style="display: none;">
+            <div id="groupWordCounter">Group: 0 / 0</div>
+            <div id="overallWordCounter">Overall: 0 / 0</div>
+        </div>
+        <div id="currentGroupDisplay" class="current-group-display" style="display: none;">Current Group: N/A</div>
+
+        <div class="word-container" style="display: none;">
+            <div id="wordDisplay" class="word-display">Word</div>
+            <!-- TTS button content is now text/emoji for easier styling if FontAwesome fails or is removed -->
+            <button id="tts-button" title="Speak word">🔊</button>
+        </div>
+        <div id="mainWordPos" class="main-word-pos" style="display: none;">Part of Speech</div>
+
+        <div id="mainWordMeaningArea" class="info-area" style="display: none;">
+            <h3>Meaning:</h3>
+            <div id="mainWordEnglishMeaning" class="main-word-info-text"></div>
+            <div id="mainWordHindiMeaning" class="main-word-info-text hindi-text"></div>
+        </div>
+
+        <div id="synonymsArea" class="info-area" style="display: none;">
+            <h3>Synonyms:</h3>
+            <ul id="synonymsList"></ul>
+        </div>
+        <div id="antonymsArea" class="info-area" style="display: none;">
+            <h3>Antonyms:</h3>
+            <ul id="antonymsList"></ul>
+        </div>
+
+        <div class="buttons-container" style="display: none;">
+    <!-- prev-next-row div ki ab zaroorat nahi, ya buttons-container ko hi row bana denge -->
+    <button id="prevWordBtn" disabled>Previous</button>
+    <button id="toggleDetailsBtn" disabled>Show Details</button>
+    <button id="nextWordBtn" disabled>Next</button>
+</div>
+        </div>
+    </div>
+
+    <script>
+        let vocabularyGroups = []; 
+        let currentSelectedGroupWords = [];
+        let currentWordIndex = -1; 
+        let currentGroupIndex = -1; 
+        let totalWordsOverall = 0; 
+        let detailsVisible = false; 
+
+        const navMenuIcon = document.getElementById('nav-menu-icon');
+        const navigationPanel = document.getElementById('navigation-panel');
+        const navOverlay = document.getElementById('nav-overlay');
+        const bodyEl = document.body; // Reference to body for margin adjustments
+
+        const currentGroupDisplay = document.getElementById('currentGroupDisplay');
+        const wordDisplay = document.getElementById('wordDisplay');
+        const ttsButton = document.getElementById('tts-button'); 
+        const mainWordPosDisplay = document.getElementById('mainWordPos');
+
+        const mainWordMeaningArea = document.getElementById('mainWordMeaningArea');
+        const mainWordEnglishMeaningDisplay = document.getElementById('mainWordEnglishMeaning');
+        const mainWordHindiMeaningDisplay = document.getElementById('mainWordHindiMeaning');
+
+        const synonymsArea = document.getElementById('synonymsArea');
+        const synonymsList = document.getElementById('synonymsList');
+        const antonymsArea = document.getElementById('antonymsArea');
+        const antonymsList = document.getElementById('antonymsList');
+        const prevWordBtn = document.getElementById('prevWordBtn');
+        const toggleDetailsBtn = document.getElementById('toggleDetailsBtn'); 
+        const nextWordBtn = document.getElementById('nextWordBtn');
+        const groupWordCounterDisplay = document.getElementById('groupWordCounter'); 
+        const overallWordCounterDisplay = document.getElementById('overallWordCounter');
+        const speechSynthesis = window.speechSynthesis;
+        
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const mainContentElements = [
+            document.querySelector('.serial-info-container'),
+            currentGroupDisplay,
+            document.querySelector('.word-container'),
+            mainWordPosDisplay,
+            document.querySelector('.buttons-container')
+        ];
+
+        function showMainContent(show) {
+            loadingIndicator.style.display = show ? 'none' : 'block';
+            mainContentElements.forEach(el => {
+                if (el) { // Ensure element exists
+                    el.style.display = show ? (el.classList.contains('buttons-container') || el.classList.contains('serial-info-container') || el.classList.contains('word-container') ? 'flex' : 'block') : 'none';
+                }
+            });
+             if (!show) { 
+                if (mainWordMeaningArea) mainWordMeaningArea.style.display = 'none';
+                if (synonymsArea) synonymsArea.style.display = 'none';
+                if (antonymsArea) antonymsArea.style.display = 'none';
+            }
+        }
+
+        async function loadVocabularyData() {
+            showMainContent(false); 
+            try {
+                const response = await fetch('vocabulary_data.json'); 
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status} - Could not fetch vocabulary_data.json`);
+                }
+                const data = await response.json();
+                vocabularyGroups = data;
+                initializeAppLogic(); 
+            } catch (error) {
+                console.error("Could not load vocabulary data:", error);
+                loadingIndicator.textContent = "Error loading vocabulary. Please try refreshing the page.";
+            }
+        }
+        
+        // --- NEW/ADAPTED Navigation Logic ---
+        function toggleNavigation() { // Renamed from toggleNavigationPanel
+            const isOpen = navigationPanel.classList.toggle('open');
+            navOverlay.classList.toggle('active', isOpen);
+            navMenuIcon.classList.toggle('open', isOpen); // CSS ::before handles icon change
+
+            // Adjust body margin only for wider screens
+            if (window.innerWidth > 768) {
+                bodyEl.style.marginLeft = isOpen ? `${navigationPanel.offsetWidth}px` : '0';
+            } else {
+                bodyEl.style.marginLeft = '0'; // Ensure no margin on mobile
+            }
+
+            if (isOpen) {
+                updateActiveQuestionLinkInNav(); 
+            }
+        }
+        navMenuIcon.addEventListener('click', toggleNavigation);
+        navOverlay.addEventListener('click', toggleNavigation);
+
+        function populateNavigationPanel() { 
+            navigationPanel.innerHTML = ''; 
+            if (!vocabularyGroups || vocabularyGroups.length === 0) {
+                console.warn("No vocabulary groups to populate in navigation.");
+                return;
+            }
+            vocabularyGroups.forEach((groupData, groupIdx) => {
+                const groupDiv = document.createElement('div');
+                groupDiv.classList.add('nav-group-container'); 
+                const header = document.createElement('div');
+                header.classList.add('nav-group-header');
+                const titleSpan = document.createElement('span');
+                titleSpan.classList.add('group-title');
+                titleSpan.textContent = groupData.name || `Group ${groupIdx + 1}`; 
+                header.appendChild(titleSpan);
+                
+                const loadBtn = document.createElement('button'); // Load button before arrow
+                loadBtn.classList.add('load-part-btn');
+                loadBtn.textContent = 'Load';
+                loadBtn.title = `Load ${groupData.name || `Group ${groupIdx + 1}`}`;
+                loadBtn.onclick = (e) => {
+                    e.stopPropagation(); 
+                    loadQuizGroup(groupIdx);
+                    if (navigationPanel.classList.contains('open')) { // Close nav after loading
+                        toggleNavigation(); 
+                    }
+                };
+                header.appendChild(loadBtn);
+
+                const arrowSpan = document.createElement('span');
+                arrowSpan.classList.add('arrow');
+                arrowSpan.innerHTML = '▶'; 
+                header.appendChild(arrowSpan);
+
+                const content = document.createElement('div');
+                content.classList.add('nav-group-content');
+                const ul = document.createElement('ul');
+                ul.classList.add('nav-question-list');
+                content.appendChild(ul);
+                
+                // Adapted nav group expansion from new style (closes others)
+                header.addEventListener('click', function(e) {
+                    if (e.target.classList.contains('load-part-btn')) return;
+
+                    const currentHeader = this;
+                    const currentContent = currentHeader.nextElementSibling;
+                    const isAlreadyOpen = currentHeader.classList.contains('open');
+
+                    // Close all other groups
+                    navigationPanel.querySelectorAll('.nav-group-header').forEach(h => {
+                        if (h !== currentHeader) {
+                            h.classList.remove('open');
+                            h.querySelector('.arrow').innerHTML = '▶';
+                            if (h.nextElementSibling) {
+                                h.nextElementSibling.style.maxHeight = '0';
+                            }
+                        }
+                    });
+                    
+                    // Toggle current group
+                    if (!isAlreadyOpen) {
+                        currentHeader.classList.add('open');
+                        arrowSpan.innerHTML = '▼';
+                        if (ul.childElementCount === 0 && groupData.words && groupData.words.length > 0) { 
+                            groupData.words.forEach((wordObj, wordIdxInGroup) => {
+                                const listItem = document.createElement('li');
+                                const link = document.createElement('a');
+                                link.href = '#';
+                                link.textContent = wordIdxInGroup + 1; 
+                                link.dataset.groupIdx = groupIdx;
+                                link.dataset.wordIdx = wordIdxInGroup;
+                                link.onclick = (ev) => {
+                                    ev.preventDefault();
+                                    ev.stopPropagation(); // Prevent header click
+                                    if (parseInt(link.dataset.groupIdx) === currentGroupIndex) {
+                                        jumpToWord(parseInt(link.dataset.wordIdx));
+                                        if (navigationPanel.classList.contains('open')) {
+                                            toggleNavigation(); 
+                                        }
+                                    } else {
+                                        alert(`Please load "${groupData.name || `Group ${groupIdx + 1}`}" first using its 'Load' button.`);
+                                    }
+                                };
+                                listItem.appendChild(link);
+                                ul.appendChild(listItem);
+                            });
+                        } else if (ul.childElementCount === 0 && (!groupData.words || groupData.words.length === 0)) {
+                            const listItem = document.createElement('li');
+                            listItem.textContent = "No words."; // Shorter message
+                            listItem.style.padding = "10px";
+                            listItem.style.gridColumn = "1 / -1"; 
+                            listItem.style.textAlign = "center";
+                            listItem.style.color = "rgba(255,255,255,0.7)"; // Lighter text
+                            ul.appendChild(listItem);
+                        }
+                        currentContent.style.maxHeight = currentContent.scrollHeight + "px";
+                    } else {
+                        currentHeader.classList.remove('open');
+                        arrowSpan.innerHTML = '▶';
+                        currentContent.style.maxHeight = "0";
+                    }
+                    updateActiveQuestionLinkInNav();
+                });
+
+                groupDiv.appendChild(header);
+                groupDiv.appendChild(content);
+                navigationPanel.appendChild(groupDiv);
+            });
+        }
+        
+        function updateActiveQuestionLinkInNav() { 
+            document.querySelectorAll('.nav-question-list li a').forEach(a => a.classList.remove('active-q-link'));
+            if (currentGroupIndex !== -1 && currentWordIndex !== -1) {
+                const activeLink = navigationPanel.querySelector(`.nav-question-list li a[data-group-idx="${currentGroupIndex}"][data-word-idx="${currentWordIndex}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active-q-link');
+                }
+            }
+        }
+        
+        function loadQuizGroup(groupIdxToLoad) {
+            if (groupIdxToLoad < 0 || groupIdxToLoad >= vocabularyGroups.length) {
+                console.error("Invalid group index:", groupIdxToLoad); return;
+            }
+            currentGroupIndex = groupIdxToLoad;
+            const selectedGroup = vocabularyGroups[currentGroupIndex];
+
+            currentGroupDisplay.innerHTML = `📚 ${selectedGroup.name || `Group ${currentGroupIndex + 1}`}`; // Added emoji
+
+            if (!selectedGroup || !selectedGroup.words || selectedGroup.words.length === 0) {
+                const groupName = selectedGroup.name || `Group ${currentGroupIndex + 1}`;
+                alert(`Group "${groupName}" is empty or has no words.`);
+                wordDisplay.textContent = "Group Empty";
+                mainWordPosDisplay.innerHTML = ""; 
+                mainWordMeaningArea.style.display = 'none';
+                synonymsArea.style.display = 'none';
+                antonymsArea.style.display = 'none';
+                groupWordCounterDisplay.textContent = `Group: 0 / 0`;
+                overallWordCounterDisplay.textContent = `Overall: ${calculateOverallWordNumber(currentGroupIndex, -1) +1} / ${totalWordsOverall}`;
+                disableQuizButtons(true, true);
+                currentSelectedGroupWords = [];
+                currentWordIndex = -1; // Reset word index
+                updateActiveQuestionLinkInNav(); // Clear active link
+                showMainContent(true); // Show main content area even if group is empty
+                return;
+            }
+            currentSelectedGroupWords = [...selectedGroup.words]; 
+            currentWordIndex = -1; 
+            jumpToWord(0); 
+            showMainContent(true); // Ensure main content is shown
+        }
+
+        function jumpToWord(wordIdxInGroup) { 
+            if (wordIdxInGroup < 0 || wordIdxInGroup >= currentSelectedGroupWords.length) return;
+            currentWordIndex = wordIdxInGroup;
+            displayWordAtIndex(currentWordIndex);
+        }
+
+        function calculateOverallWordNumber(groupIdx, wordIdxInGroup) { 
+            let overallNumber = 0;
+            for (let i = 0; i < groupIdx; i++) {
+                 if (vocabularyGroups[i] && vocabularyGroups[i].words) { 
+                    overallNumber += vocabularyGroups[i].words.length;
+                }
+            }
+            overallNumber += (wordIdxInGroup + 1); 
+            return overallNumber;
+        }
+        
+        function displayWordAtIndex(index) {
+            if (currentSelectedGroupWords.length === 0 || index < 0 || index >= currentSelectedGroupWords.length) {
+                wordDisplay.textContent = "No word to display.";
+                mainWordPosDisplay.innerHTML = "";
+                mainWordMeaningArea.style.display = 'none';
+                synonymsArea.style.display = 'none';
+                antonymsArea.style.display = 'none';
+                disableQuizButtons(true, true);
+                const currentWordsInGroup = currentSelectedGroupWords.length;
+                groupWordCounterDisplay.textContent = `Group: ${currentWordsInGroup > 0 ? (index + 1) : 0} / ${currentWordsInGroup}`;
+                overallWordCounterDisplay.textContent = `Overall: ${currentWordsInGroup > 0 ? calculateOverallWordNumber(currentGroupIndex, index) : calculateOverallWordNumber(currentGroupIndex, -1)+1} / ${totalWordsOverall}`;
+                updateActiveQuestionLinkInNav();
+                return;
+            }
+            
+            const currentWordObject = currentSelectedGroupWords[index];
+            wordDisplay.textContent = currentWordObject.word;
+            wordDisplay.style.animation = 'none'; // Reset animation
+            // Force reflow to restart animation
+            void wordDisplay.offsetWidth; 
+            wordDisplay.style.animation = 'wordAppear 0.6s ease-out, oscillateWord 4s ease-in-out infinite 0.7s';
+
+
+            let posText = currentWordObject.pos ? `(${currentWordObject.pos})` : ""; // Simpler if no POS
+            let repetitionText = "";
+
+            if (currentWordObject.repetition) {
+                const repValue = String(currentWordObject.repetition).trim(); 
+                if (repValue !== "0" && repValue !== "") {
+                     repetitionText = `<span class="repetition-count">${repValue.startsWith('#R-') ? repValue : `#R-${repValue}`}</span>`;
+                }
+            }
+            mainWordPosDisplay.innerHTML = `${posText} ${repetitionText}`.trim();
+
+
+            detailsVisible = false; 
+            mainWordMeaningArea.style.display = 'none';
+            synonymsArea.style.display = 'none';
+            antonymsArea.style.display = 'none';
+            toggleDetailsBtn.textContent = 'Show Details'; // Original text
+
+            mainWordEnglishMeaningDisplay.textContent = currentWordObject.meaning || "N/A";
+            mainWordHindiMeaningDisplay.textContent = currentWordObject.hindiMeaning || "N/A";
+
+            populateList(synonymsList, currentWordObject.synonyms, "Synonyms");
+            populateList(antonymsList, currentWordObject.antonyms, "Antonyms");
+            
+            const hasMainMeaning = !!(currentWordObject.meaning || currentWordObject.hindiMeaning);
+            const hasSynonyms = currentWordObject.synonyms && currentWordObject.synonyms.length > 0;
+            const hasAntonyms = currentWordObject.antonyms && currentWordObject.antonyms.length > 0;
+            
+            toggleDetailsBtn.disabled = !(hasMainMeaning || hasSynonyms || hasAntonyms);
+            disableQuizButtons(false, false); 
+
+            prevWordBtn.disabled = index === 0 && currentGroupIndex === 0; // Disabled only if first word of first group
+            nextWordBtn.disabled = index === currentSelectedGroupWords.length - 1 && currentGroupIndex === vocabularyGroups.length - 1; // Disabled only if last word of last group
+
+            groupWordCounterDisplay.textContent = `Group: ${index + 1} / ${currentSelectedGroupWords.length}`;
+            const overallNumber = calculateOverallWordNumber(currentGroupIndex, index);
+            overallWordCounterDisplay.textContent = `Overall: ${overallNumber} / ${totalWordsOverall}`;
+            
+            updateActiveQuestionLinkInNav();
+        }
+        
+        function disableQuizButtons(disableNavButtons, disableToggleDetailsAlso) {
+            prevWordBtn.disabled = disableNavButtons;
+            nextWordBtn.disabled = disableNavButtons;
+            if (disableToggleDetailsAlso) { 
+                 toggleDetailsBtn.disabled = true;
+            }
+        }
+
+        function loadNextWord() { 
+            if (currentWordIndex < currentSelectedGroupWords.length - 1) {
+                currentWordIndex++;
+                displayWordAtIndex(currentWordIndex);
+            } else { // End of current group
+                if (currentGroupIndex < vocabularyGroups.length - 1) { // More groups exist
+                    alert("You've reached the end of this group. Click OK to load the next group.");
+                    loadQuizGroup(currentGroupIndex + 1);
+                } else { // End of all groups
+                    alert("Congratulations! You've reached the end of all vocabulary groups!");
+                    nextWordBtn.disabled = true; // Keep it disabled
+                }
+            }
+        }
+        function loadPreviousWord() { 
+            if (currentWordIndex > 0) {
+                currentWordIndex--;
+                displayWordAtIndex(currentWordIndex);
+            } else { // Start of current group
+                if (currentGroupIndex > 0) { // Previous groups exist
+                     alert("You are at the first word of this group. Click OK to load the previous group.");
+                     loadQuizGroup(currentGroupIndex - 1);
+                     if(currentSelectedGroupWords.length > 0) { // Jump to last word of new previous group
+                        jumpToWord(currentSelectedGroupWords.length - 1);
+                     }
+                } else { // Start of all groups
+                    alert("You are at the very first word.");
+                    prevWordBtn.disabled = true; // Keep it disabled
+                }
+            }
+        }
+        prevWordBtn.addEventListener('click', () => {
+            loadPreviousWord();
+        });
+        nextWordBtn.addEventListener('click', () => {
+            loadNextWord();
+        });
+
+
+        function populateList(listElement, itemsArray, listType) { // Added listType
+            listElement.innerHTML = '';
+            if (itemsArray && itemsArray.length > 0) {
+                itemsArray.forEach(itemObj => {
+                    if (!itemObj || typeof itemObj.text === 'undefined') {
+                        console.warn(`Skipping invalid item in ${listType}:`, itemObj);
+                        return; 
+                    }
+
+                    const listItem = document.createElement('li');
+                    const itemHeaderClickable = document.createElement('div');
+                    itemHeaderClickable.className = 'item-header-clickable';
+
+                    const expandIcon = document.createElement('span');
+                    expandIcon.className = 'item-expand-icon';
+                    expandIcon.innerHTML = '▶'; 
+
+                    const itemTextMain = document.createElement('span');
+                    itemTextMain.className = 'item-text-main';
+                    itemTextMain.textContent = itemObj.text;
+
+                    itemHeaderClickable.appendChild(expandIcon);
+                    itemHeaderClickable.appendChild(itemTextMain);
+                    listItem.appendChild(itemHeaderClickable);
+
+                    const detailsContainer = document.createElement('div');
+                    detailsContainer.className = 'item-collapsible-details';
+
+                    let hasDetails = false;
+                    if (itemObj.pos) {
+                        const posDiv = document.createElement('div'); // Use div for block display
+                        posDiv.className = 'item-details-group'; // General group class
+                        const posSpan = document.createElement('span');
+                        posSpan.className = 'item-details-pos';
+                        posSpan.textContent = `[${itemObj.pos}]`;
+                        posDiv.appendChild(posSpan);
+                        detailsContainer.appendChild(posDiv);
+                        hasDetails = true;
+                    }
+                    if (itemObj.meaning) {
+                        const meaningDiv = document.createElement('div');
+                        meaningDiv.className = 'item-meaning';
+                        meaningDiv.textContent = `Meaning: ${itemObj.meaning}`;
+                        detailsContainer.appendChild(meaningDiv);
+                        hasDetails = true;
+                    }
+                    if (itemObj.hindiMeaning) {
+                        const hindiMeaningDiv = document.createElement('div');
+                        hindiMeaningDiv.className = 'item-hindi-meaning hindi-text';
+                        hindiMeaningDiv.textContent = `हिन्दी अर्थ: ${itemObj.hindiMeaning}`;
+                        detailsContainer.appendChild(hindiMeaningDiv);
+                        hasDetails = true;
+                    }
+                    
+                    if (hasDetails) {
+                        listItem.appendChild(detailsContainer);
+                        itemHeaderClickable.onclick = function() {
+                            const isExpanded = this.classList.toggle('expanded');
+                            detailsContainer.style.display = isExpanded ? 'block' : 'none';
+                            expandIcon.innerHTML = isExpanded ? '▼' : '▶'; 
+                        };
+                    } else {
+                        expandIcon.style.visibility = 'hidden'; 
+                        itemHeaderClickable.style.cursor = 'default'; // No action if no details
+                    }
+                    listElement.appendChild(listItem);
+                });
+            } else {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<div style="padding: 10px 8px; color: rgba(255,255,255,0.7);">N/A</div>`;
+                listElement.appendChild(listItem);
+            }
+        }
+        
+        function toggleAllDetails() { // This is the original function for the main "Show/Hide Details" button
+            if (currentSelectedGroupWords.length === 0 || currentWordIndex === -1 || !currentSelectedGroupWords[currentWordIndex]) {
+                return; 
+            }
+            const wordData = currentSelectedGroupWords[currentWordIndex];
+            const hasMainMeaning = !!(wordData.meaning || wordData.hindiMeaning);
+            const hasSynonyms = wordData.synonyms && wordData.synonyms.length > 0;
+            const hasAntonyms = wordData.antonyms && wordData.antonyms.length > 0;
+
+            if (!hasMainMeaning && !hasSynonyms && !hasAntonyms) {
+                toggleDetailsBtn.disabled = true; 
+                mainWordMeaningArea.style.display = 'none'; 
+                synonymsArea.style.display = 'none';
+                antonymsArea.style.display = 'none';
+                return;
+            }
+            detailsVisible = !detailsVisible; 
+            mainWordMeaningArea.style.display = detailsVisible && hasMainMeaning ? 'block' : 'none';
+            synonymsArea.style.display = detailsVisible && hasSynonyms ? 'block' : 'none';
+            antonymsArea.style.display = detailsVisible && hasAntonyms ? 'block' : 'none';
+            toggleDetailsBtn.textContent = detailsVisible ? 'Hide Details' : 'Show Details';
+        }
+        toggleDetailsBtn.addEventListener('click', toggleAllDetails);
+
+        // Replace your existing TTS code with:
+ ttsButton.addEventListener('click', () => {
+            if (!speechSynthesis || currentWordIndex === -1 || !currentSelectedGroupWords[currentWordIndex]) return;
+            
+            const wordToSpeak = currentSelectedGroupWords[currentWordIndex].word;
+            if (speechSynthesis.speaking) { 
+                speechSynthesis.cancel();
+            }
+            const utterance = new SpeechSynthesisUtterance(wordToSpeak);
+            const voices = speechSynthesis.getVoices();
+            let targetVoice = voices.find(voice => voice.lang.startsWith('en') && (voice.name.toLowerCase().includes('male') || (voice.gender && voice.gender.toLowerCase() === 'male')));
+            if (!targetVoice) targetVoice = voices.find(voice => voice.lang.startsWith('en'));
+            if (!targetVoice && voices.length > 0) targetVoice = voices[0];
+            if (targetVoice) utterance.voice = targetVoice;
+            utterance.pitch = 1; 
+            utterance.rate = 0.9;  
+            utterance.volume = 1; 
+            speechSynthesis.speak(utterance);
+
+            // TTS Button Animation
+            ttsButton.style.transform = 'scale(1.2) rotate(15deg)';
+            setTimeout(() => { ttsButton.style.transform = 'scale(1)'; }, 300);
+            setTimeout(() => { ttsButton.style.transform = ''; }, 600);
+        });
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = () => { /* console.log("Voices loaded"); */ };
+        }
+
+        function initializeAppLogic() {
+            showMainContent(true); 
+            totalWordsOverall = 0;
+            if (!vocabularyGroups || vocabularyGroups.length === 0) {
+                 currentGroupDisplay.textContent = "No vocabulary groups loaded.";
+                wordDisplay.textContent = "N/A";
+                groupWordCounterDisplay.textContent = "Group: 0 / 0";
+                overallWordCounterDisplay.textContent = `Overall: 0 / 0`;
+                disableQuizButtons(true, true);
+                showMainContent(true); // Still show the empty state
+                return;
+            }
+
+            vocabularyGroups.forEach(group => { 
+                if (group && group.words) { 
+                    totalWordsOverall += group.words.length; 
+                }
+            });
+
+            populateNavigationPanel(); 
+            
+            if (vocabularyGroups.length > 0 && vocabularyGroups[0] && vocabularyGroups[0].words && vocabularyGroups[0].words.length > 0) {
+                loadQuizGroup(0); 
+            } else if (vocabularyGroups.length > 0) { 
+                loadQuizGroup(0); // Load even if first group is empty, will show "Group Empty"
+            }
+            else { 
+                currentGroupDisplay.textContent = "No vocabulary groups defined in data.";
+                wordDisplay.textContent = "Please add vocabulary to data file.";
+                disableQuizButtons(true, true);
+            }
+            // FontAwesome related JS for icons is removed as CSS/text handles them now.
+        }
+        
+        // --- Additional UI enhancements from new style ---
+        function handleResize() {
+            if (navigationPanel.classList.contains('open')) {
+                if (window.innerWidth <= 768) {
+                    bodyEl.style.marginLeft = '0'; // No margin push on mobile
+                } else {
+                    bodyEl.style.marginLeft = `${navigationPanel.offsetWidth}px`;
+                }
+            }
+        }
+        window.addEventListener('resize', handleResize);
+
+        // Intersection Observer for info-area animations
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const infoAreaObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    infoAreaObserver.unobserve(entry.target); // Optional: Animate only once
+                }
+            });
+        }, observerOptions);
+
+        // Apply to dynamically shown info areas if needed, or prime them:
+        // Call this after displayWordAtIndex if you want to re-observe
+        function primeInfoAreaAnimations() {
+            document.querySelectorAll('.info-area').forEach(area => {
+                if (area.style.display !== 'none') { // Only observe visible areas
+                    area.style.opacity = '0';
+                    area.style.transform = 'translateY(20px)';
+                    // Note: transition is set in CSS for .info-area
+                    infoAreaObserver.observe(area);
+                }
+            });
+        }
+        // Initial priming after content might be visible
+        // setTimeout(primeInfoAreaAnimations, 300); // Example, might need adjustment
+
+        // Keyboard shortcuts (simple example)
+        document.addEventListener('keydown', function(e) {
+            if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') {
+                return; // Don't interfere with text input
+            }
+            // Check if navigation panel is open and if Escape is pressed
+            if (e.key.toLowerCase() === 'escape' && navigationPanel.classList.contains('open')) {
+                toggleNavigation();
+                return; // Prevent other shortcuts if nav was closed
+            }
+            // If nav is open, or if a modal/dialog is conceptually open, disable other shortcuts
+            if (navigationPanel.classList.contains('open')) {
+                return;
+            }
+
+            switch(e.key.toLowerCase()) {
+                case 'n': // Next word
+                    if (!nextWordBtn.disabled) nextWordBtn.click();
+                    break;
+                case 'p': // Previous word
+                     if (!prevWordBtn.disabled) prevWordBtn.click();
+                    break;
+                case 'd': // Toggle details
+                     if (!toggleDetailsBtn.disabled) toggleDetailsBtn.click();
+                    break;
+                case 's': // Speak
+                    if (!ttsButton.disabled && ttsButton.offsetParent !== null) ttsButton.click(); // check visible
+                    break;
+                // Escape is handled above
+            }
+        });
+
+
+        loadVocabularyData();
+     <!--#include virtual="/_footer.html" -->
+    </script>
+</body>
+</html>

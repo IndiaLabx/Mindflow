@@ -1,0 +1,247 @@
+Global Presence Architecture: Avatar UI Sweep
+Goal: Implement a DRY (Don't Repeat Yourself) reusable Presence Avatar component to show the "Active Now" green dot globally across the app (Feed, Search, Comments, Chat, and Profiles) without duplicating logic.
+
+1. Create the Universal Component
+File: src/components/ui/PresenceAvatar.tsx What we did: Created a brand new reusable component that consumes the global usePresenceStore. It overlays an absolute-positioned green dot if the userId is currently online. Crucially, it does not filter out the current user, so users get visual confirmation that they are online.
+
+New File Content:
+
+import React from 'react';
+import { usePresenceStore } from '../../stores/usePresenceStore';
+import { cn } from '../../utils/cn';
+
+interface PresenceAvatarProps {
+  userId: string;
+  avatarUrl?: string | null;
+  altText?: string;
+  className?: string; // used to control width and height
+}
+
+export const PresenceAvatar: React.FC<PresenceAvatarProps> = ({ 
+  userId, 
+  avatarUrl, 
+  altText = 'User', 
+  className = 'w-10 h-10' 
+}) => {
+  // Directly checking the store. We DO NOT filter out the current user,
+  // so if the user is online, they see their own green dot.
+  const isOnline = usePresenceStore(state => state.isUserOnline(userId));
+
+  return (
+    <div className={cn("relative inline-block", className)}>
+      <div className="w-full h-full rounded-full bg-indigo-500 overflow-hidden shadow-sm flex items-center justify-center">
+        {avatarUrl ? (
+          <img 
+            src={avatarUrl} 
+            alt={altText} 
+            className="w-full h-full object-cover" 
+          />
+        ) : (
+          <span className="text-white font-bold text-sm uppercase">
+            {altText.charAt(0)}
+          </span>
+        )}
+      </div>
+      
+      {isOnline && (
+        <div 
+          className="absolute bottom-0 right-0 w-[25%] h-[25%] min-w-[10px] min-h-[10px] bg-green-500 border-2 border-white dark:border-slate-900 rounded-full"
+          aria-label="Online status indicator"
+        />
+      )}
+    </div>
+  );
+};
+
+2. Update Global Navigation (Social Header)
+File: src/features/community/components/SocialHeader.tsx What we did: Updated the "Your Story" bubble at the top of the feed so the user sees their own presence dot immediately upon opening the app.
+
+Add Import at the top:
+
+import { PresenceAvatar } from '../../../components/ui/PresenceAvatar';
+Before:
+
+<div className="w-16 h-16 rounded-full p-[2px] bg-gradient-to-tr from-gray-200 to-gray-300 dark:from-slate-700 dark:to-slate-600">
+  <img
+    src={userAvatar}
+    alt="Your Story"
+    className="w-full h-full rounded-full border-2 border-white dark:border-slate-900 object-cover"
+  />
+</div>
+After:
+
+<div className="w-16 h-16 rounded-full p-[2px] bg-gradient-to-tr from-gray-200 to-gray-300 dark:from-slate-700 dark:to-slate-600">
+  <PresenceAvatar
+    userId={user?.id || ''}
+    avatarUrl={userAvatar}
+    altText="Your Story"
+    className="w-full h-full rounded-full border-2 border-white dark:border-slate-900"
+  />
+</div>
+3. Update the Social Feed (Post Cards)
+File: src/features/community/components/PostCard.tsx What we did: Added the presence dot next to the author's name on posts, as well as the avatar next to the inline "Add a comment..." input.
+
+Add Import at the top:
+
+import { PresenceAvatar } from '../../../components/ui/PresenceAvatar';
+Before (Post Author):
+
+<div className="w-9 h-9 rounded-full bg-indigo-500 overflow-hidden shadow-sm flex items-center justify-center border-2 border-indigo-100 dark:border-indigo-900">
+  {post.author_profile?.avatar_url ? (
+    <img src={post.author_profile.avatar_url} alt={post.author_profile.full_name || 'User'} className="w-full h-full object-cover" />
+  ) : (
+    <span className="text-white font-bold text-sm">
+      {(post.author_profile?.full_name || 'U').charAt(0)}
+    </span>
+  )}
+</div>
+After (Post Author):
+
+<div className="w-9 h-9 rounded-full overflow-hidden shadow-sm flex items-center justify-center border-2 border-indigo-100 dark:border-indigo-900">
+  <PresenceAvatar 
+     userId={post.author_id} 
+     avatarUrl={post.author_profile?.avatar_url} 
+     altText={post.author_profile?.full_name || 'User'} 
+     className="w-full h-full" 
+  />
+</div>
+Before (Comment Input Avatar):
+
+<div className="w-8 h-8 rounded-full overflow-hidden shrink-0 mt-0.5">
+  <img 
+    src={user?.user_metadata?.avatar_url || "https://api.dicebear.com/6.x/avataaars/svg?seed=fallback"} 
+    className="w-full h-full object-cover" 
+    alt="Your avatar" 
+  />
+</div>
+After (Comment Input Avatar):
+
+<div className="w-8 h-8 rounded-full overflow-hidden shrink-0 mt-0.5">
+  <PresenceAvatar 
+    userId={user?.id || ''}
+    avatarUrl={user?.user_metadata?.avatar_url || "https://api.dicebear.com/6.x/avataaars/svg?seed=fallback"} 
+    className="w-full h-full" 
+    altText="Your avatar" 
+  />
+</div>
+
+4. Update the Comment Section
+File: src/features/community/components/CommentThread.tsx What we did: Added the presence indicator to all comments and nested replies.
+
+Add Import at the top:
+
+import { PresenceAvatar } from '../../../components/ui/PresenceAvatar';
+Before:
+
+{/* Inside the main comment AND the replies map, replace the <img> tag inside the w-8 h-8 wrapper */}
+<img
+  src={c.author_profile?.avatar_url || `https://api.dicebear.com/6.x/avataaars/svg?seed=${c.author_id}`}
+  alt="avatar"
+  className="w-full h-full object-cover"
+/>
+After:
+
+<PresenceAvatar
+  userId={c.author_id} // Use r.author_id for replies
+  avatarUrl={c.author_profile?.avatar_url || `https://api.dicebear.com/6.x/avataaars/svg?seed=${c.author_id}`}
+  altText="avatar"
+  className="w-full h-full"
+/>
+5. Update the Search Results
+File: src/features/community/pages/CommunitySearch.tsx What we did: Show the green dot when searching for users to know immediately if they are online.
+
+Add Import at the top:
+
+import { PresenceAvatar } from '../../../components/ui/PresenceAvatar';
+Before:
+
+<div className="w-12 h-12 rounded-full overflow-hidden shrink-0 border border-gray-200">
+  <img 
+    src={u.avatar_url || `https://api.dicebear.com/6.x/avataaars/svg?seed=${u.id}`} 
+    alt={u.full_name || 'User'} 
+    className="w-full h-full object-cover" 
+  />
+</div>
+After:
+
+<div className="w-12 h-12 rounded-full overflow-hidden shrink-0 border border-gray-200">
+  <PresenceAvatar 
+    userId={u.id}
+    avatarUrl={u.avatar_url || `https://api.dicebear.com/6.x/avataaars/svg?seed=${u.id}`} 
+    altText={u.full_name || 'User'} 
+    className="w-full h-full" 
+  />
+</div>
+
+
+6. Update Community User Profiles
+File: src/features/community/pages/UserProfile.tsx What we did: Updated the large header avatar when viewing another user's profile.
+
+Add Import at the top:
+
+import { PresenceAvatar } from '../../../components/ui/PresenceAvatar';
+Before:
+
+<img
+  src={profile.avatar_url || 'https://api.dicebear.com/6.x/avataaars/svg?seed=fallback'}
+  alt="Profile Avatar"
+  className="w-full h-full object-cover"
+/>
+After:
+
+<PresenceAvatar
+  userId={profile.id}
+  avatarUrl={profile.avatar_url || 'https://api.dicebear.com/6.x/avataaars/svg?seed=fallback'}
+  altText="Profile Avatar"
+  className="w-full h-full"
+/>
+7. Update Own Settings/Profile
+File: src/features/auth/components/ProfilePage.tsx What we did: Added the presence dot to the user's own large avatar in the Profile/Settings page.
+
+Add Import at the top:
+
+import { PresenceAvatar } from '../../../components/ui/PresenceAvatar';
+Before:
+
+<img
+  src={avatarUrl}
+  alt="Profile"
+  className="w-full h-full object-cover"
+/>
+After:
+
+<PresenceAvatar
+  userId={user?.id || ''}
+  avatarUrl={avatarUrl}
+  altText="Profile"
+  className="w-full h-full"
+/>
+
+8. Update Chat Inbox List
+File: src/features/community/pages/ChatRooms.tsx What we did: Replaced the manually constructed presence logic inside the inbox list to use our new clean component.
+
+Add Import at the top:
+
+import { PresenceAvatar } from '../../../components/ui/PresenceAvatar';
+Before (Inbox List items):
+
+<div className="w-12 h-12 rounded-full bg-gray-200 overflow-hidden flex-shrink-0 relative">
+  {avatar ? (
+    <img src={avatar} alt={title} className="w-full h-full object-cover" />
+  ) : (
+    <div className="w-full h-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold">
+      {title.charAt(0)}
+    </div>
+  )}
+  {/* Old manual online dot check used to be here */}
+</div>
+After (Inbox List items):
+
+<div className="w-12 h-12 rounded-full overflow-hidden shrink-0 shadow-sm">
+  <PresenceAvatar 
+    userId={otherParticipant?.user_id || ''} 
+    avatarUrl={otherParticipant?.avatar_url} 
+    altText={otherParticipant?.full_name || 'User'} 
+    className="w-full h-full" 
+  />
+</div>

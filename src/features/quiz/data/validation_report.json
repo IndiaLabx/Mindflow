@@ -1,0 +1,183 @@
+{
+  "summary": {
+    "totalOriginalWords": 1345,
+    "totalMatchedWords": 1345,
+    "totalMissingWords": 0,
+    "totalMismatchedDetails": 43
+  },
+  "missingWords": [],
+  "mismatchedDetails": [
+    {
+      "word": "Beseech",
+      "issue": "Mismatched meaning in antonyms item 'Order'. Orig: '- Repeated for emphasis.', Proc: 'Give an authoritative direction or instruction to do something.'"
+    },
+    {
+      "word": "Command",
+      "issue": "Mismatched meaning in synonyms item 'Order'. Orig: 'An authoritative command, direction, or instruction.', Proc: 'Give an authoritative direction or instruction to do something.'"
+    },
+    {
+      "word": "Command",
+      "issue": "Mismatched hindiMeaning in synonyms item 'Order'. Orig: 'आदेश', Proc: 'आदेश देना'"
+    },
+    {
+      "word": "Command",
+      "issue": "Mismatched meaning in synonyms item 'Dictate'. Orig: 'An order or principle that must be obeyed.', Proc: 'Lay down authoritatively; prescribe.'"
+    },
+    {
+      "word": "Command",
+      "issue": "Mismatched hindiMeaning in synonyms item 'Dictate'. Orig: 'हुक्म', Proc: 'हुक्म चलाना'"
+    },
+    {
+      "word": "Command",
+      "issue": "Mismatched meaning in synonyms item 'Charge'. Orig: 'A responsibility or onerous duty.', Proc: 'Entrust (someone) with a task as a duty or responsibility. Give (someone) an order or command.'"
+    },
+    {
+      "word": "Command",
+      "issue": "Mismatched hindiMeaning in synonyms item 'Charge'. Orig: 'आदेश', Proc: 'आरोप लगाना/आज्ञा देना'"
+    },
+    {
+      "word": "Counterfeit",
+      "issue": "Mismatched meaning in synonyms item 'Fake'. Orig: 'Forge or counterfeit (something).', Proc: 'Not genuine; counterfeit.'"
+    },
+    {
+      "word": "Counterfeit",
+      "issue": "Mismatched hindiMeaning in synonyms item 'Fake'. Orig: 'नकल बनाना', Proc: 'जाली'"
+    },
+    {
+      "word": "Disillusioned",
+      "issue": "Mismatched meaning in antonyms item 'Inspired'. Orig: 'Filled with the urge or ability to do or feel something, especially to do something creative.', Proc: 'Of extraordinary quality, as if arising from some external creative impulse.'"
+    },
+    {
+      "word": "Empty",
+      "issue": "Mismatched meaning in synonyms item 'Clear'. Orig: 'Remove obstructions or unwanted items from.', Proc: 'Free of any obstructions or unwanted objects.'"
+    },
+    {
+      "word": "Empty",
+      "issue": "Mismatched hindiMeaning in synonyms item 'Clear'. Orig: 'साफ़ करना/खाली करना', Proc: 'साफ़/खाली'"
+    },
+    {
+      "word": "Extenuate",
+      "issue": "Mismatched meaning in synonyms item 'Excuse'. Orig: 'A reason or explanation put forward to defend or justify a fault or offense. (The act of providing this is to extenuate).', Proc: 'Seek to lessen the blame attaching to (a fault or offense); try to justify. Forgive (someone) for a fault or offense.'"
+    },
+    {
+      "word": "Extenuate",
+      "issue": "Mismatched hindiMeaning in synonyms item 'Excuse'. Orig: 'क्षमा करना/कारण बताना', Proc: 'क्षमा करना/बहाना बनाना'"
+    },
+    {
+      "word": "Gratitude",
+      "issue": "Mismatched meaning in synonyms item 'Recognition'. Orig: 'Appreciation or acclaim for an achievement, service, or ability.', Proc: 'Acknowledgment of something's existence, validity, or legality. Appreciation or acclaim for an achievement, service, or ability.'"
+    },
+    {
+      "word": "Gratitude",
+      "issue": "Mismatched hindiMeaning in synonyms item 'Recognition'. Orig: 'मान्यता/आभार', Proc: 'मान्यता/स्वीकृति'"
+    },
+    {
+      "word": "Ideal",
+      "issue": "Mismatched meaning in synonyms item 'Model'. Orig: 'A system or thing used as an example to follow or imitate.', Proc: 'A system or thing used as an example to follow or imitate. serving as an ideal example.'"
+    },
+    {
+      "word": "Ideal",
+      "issue": "Mismatched hindiMeaning in synonyms item 'Model'. Orig: 'नमूना/आदर्श', Proc: 'आदर्श/नमूना'"
+    },
+    {
+      "word": "Identical",
+      "issue": "Mismatched hindiMeaning in antonyms item 'Different'. Orig: 'भिन्न/अलग', Proc: 'अलग/भिन्न'"
+    },
+    {
+      "word": "Immortal",
+      "issue": "Mismatched meaning in synonyms item 'Eternal'. Orig: '(This is the word itself, but often listed as its own primary synonym).', Proc: 'Lasting or existing forever; without end or beginning.'"
+    },
+    {
+      "word": "Incentive",
+      "issue": "Mismatched meaning in antonyms item 'Discouragement'. Orig: 'The action of discouraging or state of being discouraged.', Proc: 'The action of discouraging or state of being discouraged. Loss of confidence or enthusiasm.'"
+    },
+    {
+      "word": "Incentive",
+      "issue": "Mismatched hindiMeaning in antonyms item 'Discouragement'. Orig: 'निरुत्साहन/हतोत्साहन', Proc: 'हतोत्साहन/निरुत्साह'"
+    },
+    {
+      "word": "Incorporate",
+      "issue": "Mismatched meaning in antonyms item 'Exclude'. Orig: 'Deny (someone) access to or bar (someone) from a place, group, or privilege.', Proc: 'Deny (someone) access to or bar (someone) from a place, group, or privilege. Keep out.'"
+    },
+    {
+      "word": "Indelible",
+      "issue": "Mismatched hindiMeaning in synonyms item 'Lasting'. Orig: 'स्थायी/अमिट', Proc: 'स्थायी/टिकाऊ'"
+    },
+    {
+      "word": "Inevitably (Adv.)",
+      "issue": "Mismatched meaning in antonyms item 'Optionally'. Orig: 'In a way that may be chosen but is not required.', Proc: 'In a way that is available to be chosen but not obligatory.'"
+    },
+    {
+      "word": "Inspire",
+      "issue": "Mismatched hindiMeaning in antonyms item 'Discourage'. Orig: 'निरुत्साहित करना/हतोत्साहित करना', Proc: 'हतोत्साहित करना/निरुत्साहित करना'"
+    },
+    {
+      "word": "Insuperable",
+      "issue": "Mismatched hindiMeaning in antonyms item 'Surmountable'. Orig: 'पार करने योग्य/लांघने योग्य', Proc: 'जीतने योग्य/पार करने योग्य'"
+    },
+    {
+      "word": "Invincible",
+      "issue": "Mismatched meaning in antonyms item 'Vulnerable'. Orig: 'Exposed to the possibility of being attacked or harmed.', Proc: 'Exposed to the possibility of being attacked or harmed, either physically or emotionally. Susceptible to physical or emotional attack or harm.'"
+    },
+    {
+      "word": "Invincible",
+      "issue": "Mismatched hindiMeaning in antonyms item 'Vulnerable'. Orig: 'नाजुक/असुरक्षित', Proc: 'संवेदनशील/असुरक्षित'"
+    },
+    {
+      "word": "Invincible",
+      "issue": "Mismatched meaning in antonyms item 'Vulnerable'. Orig: 'Susceptible to physical or emotional attack or harm.', Proc: 'Exposed to the possibility of being attacked or harmed, either physically or emotionally. Susceptible to physical or emotional attack or harm.'"
+    },
+    {
+      "word": "Just",
+      "issue": "Mismatched meaning in antonyms item 'Partial'. Orig: 'Favoring one side in a dispute above the other.', Proc: 'Favoring one side in a dispute above the other; biased.'"
+    },
+    {
+      "word": "Just",
+      "issue": "Mismatched hindiMeaning in antonyms item 'Partial'. Orig: 'पक्षपाती/अधूरा', Proc: 'पक्षपाती/आंशिक'"
+    },
+    {
+      "word": "Liberate",
+      "issue": "Mismatched meaning in synonyms item 'Discharge'. Orig: 'Allow (someone) to leave a place, especially a hospital or a court of law.', Proc: 'Allow (someone) to leave a place, especially a hospital or a court of law. (Can imply freeing).'"
+    },
+    {
+      "word": "Liberate",
+      "issue": "Mismatched hindiMeaning in synonyms item 'Discharge'. Orig: 'निर्वहन करना/मुक्त करना', Proc: 'मुक्त करना/छोड़ना'"
+    },
+    {
+      "word": "Loathe",
+      "issue": "Mismatched hindiMeaning in synonyms item 'Detest'. Orig: 'बहुत अधिक घृणा करना', Proc: 'अत्यधिक घृणा करना/नफ़रत करना'"
+    },
+    {
+      "word": "Magnanimity",
+      "issue": "Mismatched meaning in antonyms item 'vindictiveness'. Orig: 'a strong desire for revenge', Proc: 'A strong desire for revenge.'"
+    },
+    {
+      "word": "Magnanimity",
+      "issue": "Mismatched hindiMeaning in antonyms item 'vindictiveness'. Orig: 'प्रतिशोधात्मकता', Proc: 'प्रतिशोध/बदले की भावना'"
+    },
+    {
+      "word": "Mediocre (Adj.)",
+      "issue": "Mismatched meaning in antonyms item 'Excellent'. Orig: 'Extremely good.', Proc: 'Extremely good; outstanding.'"
+    },
+    {
+      "word": "Mediocre (Adj.)",
+      "issue": "Mismatched hindiMeaning in antonyms item 'Excellent'. Orig: 'उत्कृष्ट/असाधारण', Proc: 'उत्कृष्ट/बहुत अच्छा'"
+    },
+    {
+      "word": "Perennial",
+      "issue": "Mismatched meaning in antonyms item 'Temporary'. Orig: 'For a limited period.', Proc: 'Lasting for only a limited period of time; not permanent.'"
+    },
+    {
+      "word": "Perennial",
+      "issue": "Mismatched hindiMeaning in antonyms item 'Temporary'. Orig: 'अल्पकालिक', Proc: 'अस्थायी/क्षणिक'"
+    },
+    {
+      "word": "Yield",
+      "issue": "Mismatched main meaning. Orig: '(Noun) An amount produced of an agricultural or industrial product. (Also the act of yielding/surrendering). (Verb: Give way to arguments, demands, or pressure. Surrender). This entry focuses on the \"हार मानना\" meaning, implying the verb sense or the act as a noun.', Proc: '(Verb) Produce or provide (a natural, agricultural, or industrial product). Give way to arguments, demands, or pressure; surrender. (Noun: An amount produced of an agricultural or industrial product).'"
+    },
+    {
+      "word": "Yield",
+      "issue": "Mismatched main hindiMeaning. Orig: 'हार मानना (V), समर्पण (N), झुक जाना (V), अधीनता (N)', Proc: 'उपज (N), पैदा करना (V), हार मानना (V), झुक जाना (V), देना (V)'"
+    }
+  ]
+}

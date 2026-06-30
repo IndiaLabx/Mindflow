@@ -1,0 +1,152 @@
+/* CinematicIntro.css */
+
+:root {
+  --brand-primary: #4f46e5;
+  --brand-secondary: #a855f7;
+}
+
+/* =========================================
+   2. SPLASH SCREEN
+   ========================================= */
+.pwa-splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background:
+      radial-gradient(circle at 20% 30%, rgba(224, 235, 255, 0.6), transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(253, 232, 255, 0.6), transparent 50%),
+      #ffffff;
+  animation: fadeInSplash 0.5s ease-out forwards;
+}
+
+.dark .pwa-splash-screen {
+  background:
+      radial-gradient(circle at 20% 30%, rgba(30, 58, 138, 0.3), transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(88, 28, 135, 0.3), transparent 50%),
+      #0f172a;
+}
+
+.mf-orbital-system {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0);
+  animation: popInElastic 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards;
+}
+
+.mf-halo-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+      from 0deg, transparent 0%, transparent 30%,
+      rgba(168, 85, 247, 0.5) 60%, rgba(79, 70, 229, 0.9) 80%, #4f46e5 100%
+  );
+  -webkit-mask: radial-gradient(circle, transparent 62%, black 64%);
+  mask: radial-gradient(circle, transparent 62%, black 64%);
+  animation: mf-spin-halo 1.5s linear infinite;
+  transition: opacity 0.5s ease;
+}
+
+.mf-core-logo {
+  position: relative;
+  z-index: 10;
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 15px 35px rgba(139, 92, 246, 0.5);
+  animation: mf-core-breathe 2.5s ease-in-out infinite alternate;
+}
+
+.mf-brain-icon {
+  width: 44px;
+  height: 44px;
+  stroke: #ffffff;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.mf-brain-path {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  animation: mf-draw-brain 2s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+}
+
+.mf-brand-name {
+  position: absolute;
+  bottom: 25%;
+  font-weight: 800;
+  font-size: 34px;
+  color: #0f172a;
+  letter-spacing: -1px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUpFade 0.8s ease-out 0.6s forwards;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.dark .mf-brand-name {
+  color: #f1f5f9;
+}
+
+.mf-brand-name.fade-early {
+  opacity: 0 !important;
+  transform: translateY(40px) !important;
+}
+
+.mf-halo-ring.fade-early {
+  opacity: 0;
+}
+
+/* =========================================
+   3. THE SMOOTH CLIP-PATH ZOOM OVERLAY
+   ========================================= */
+.zoom-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
+  clip-path: circle(0px at 50% 50%);
+  pointer-events: none;
+  opacity: 1;
+  will-change: clip-path, opacity;
+}
+
+.zoom-overlay.expanding {
+  transition: clip-path 1.4s cubic-bezier(0.4, 0, 0.6, 1);
+  clip-path: circle(150vmax at 50% 50%);
+}
+
+.zoom-overlay.vanishing {
+  transition: opacity 0.6s ease;
+  opacity: 0;
+}
+
+.pwa-splash-screen.final-vanish {
+  transition: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Keyframes */
+@keyframes fadeInSplash   { from { opacity: 0; } to { opacity: 1; } }
+@keyframes popInElastic   { 0% { transform: scale(0); } 60% { transform: scale(1.1); } 100% { transform: scale(1); } }
+@keyframes slideUpFade    { to { opacity: 1; transform: translateY(0); } }
+@keyframes mf-spin-halo   { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes mf-core-breathe { 0% { transform: scale(1); } 100% { transform: scale(1.05); } }
+@keyframes mf-draw-brain  { 0% { stroke-dashoffset: 120; } 100% { stroke-dashoffset: 0; fill: rgba(255,255,255,0.1); } }
